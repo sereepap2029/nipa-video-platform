@@ -1,0 +1,2 @@
+apply lib core extend for autoload
+http://forum.codeigniter.com/archive/index.php?thread-62217.html
