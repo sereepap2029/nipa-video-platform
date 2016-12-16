@@ -9,8 +9,10 @@ class Main extends CI_Controller {
     }
 	public function index()
 	{
-		$this->load->view('welcome_message');
-		$this->load->view('welcome_message');
+		$this->load->view('v_meta');
+		$this->load->view('v_header');
+		$this->load->view('v_index');
+		$this->load->view('v_footer');
 	}
 	public function index2()
 	{
