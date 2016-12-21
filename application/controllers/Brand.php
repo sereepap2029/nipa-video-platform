@@ -22,17 +22,25 @@ class Brand extends CI_Controller {
 	public function index()
 	{
 		
-		$this->load->view('v_meta');
-		$this->load->view('v_header');
-		$this->load->view('v_index');
-		$this->load->view('v_footer');
+		$this->load->view('brand/v_meta');
+		$this->load->view('brand/v_header');
+		$this->load->view('brand/v_dashboard');
+		$this->load->view('brand/v_footer');
 	}
-	public function login()
+	public function creator()
 	{
 		
-		$this->load->view('v_meta');
-		$this->load->view('v_header');
-		$this->load->view('v_index');
-		$this->load->view('v_footer');
+		$this->load->view('brand/v_meta');
+		$this->load->view('brand/v_header');
+		$this->load->view('brand/v_creator');
+		$this->load->view('brand/v_footer');
+	}
+	public function creator_list()
+	{
+		
+		$this->load->view('brand/v_meta');
+		$this->load->view('brand/v_header');
+		$this->load->view('brand/v_creator_list');
+		$this->load->view('brand/v_footer');
 	}
 }
