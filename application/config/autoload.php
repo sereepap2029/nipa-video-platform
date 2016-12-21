@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('m_stringlib','m_cache');
+$autoload['model'] = array('m_stringlib','m_cache','m_session_cache');
