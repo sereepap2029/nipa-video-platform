@@ -2,3 +2,11 @@
 	width: 100%;
 	text-align: center;
 }
+.creator-list .creator-items .stars .img-stars{
+	width: 20px;
+	float: left;
+	display: inline-block;	
+}
+.creator-list .creator-items{
+	padding: 20px;
+}

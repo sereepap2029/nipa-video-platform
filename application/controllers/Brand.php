@@ -37,10 +37,14 @@ class Brand extends CI_Controller {
 	}
 	public function creator_list()
 	{
-		
+		$type=$this->uri->segment(3,'');
+		$data['text_arr']['all']="All";
+		$data['text_arr']['producer']="Producer";
+		$data['text_arr']['influencer']="Influencer";
+		$data['show_type']=$type;
 		$this->load->view('brand/v_meta');
 		$this->load->view('brand/v_header');
-		$this->load->view('brand/v_creator_list');
+		$this->load->view('brand/v_creator_list',$data);
 		$this->load->view('brand/v_footer');
 	}
 }
