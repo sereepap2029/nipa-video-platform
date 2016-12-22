@@ -21,13 +21,3 @@
         </div>
     </div>
 </div>
-<div class="row align-center">
-	<div class="small-10 columns">
-        <a class="button primary" href="<?=site_url("brand")?>">Dashboard</a>
-        <a class="button primary" href="<?=site_url("brand/creator")?>">Creator</a>
-        <a class="button primary" href="<?=site_url("brand/campaign_list")?>">Campaign</a>
-        <a class="button primary" href="#">My Campaign</a>
-        <a class="button primary" href="#">Chat Room</a>
-        <a class="button primary" href="#">Reward</a>
-    </div>
-</div>

@@ -58,4 +58,20 @@ class Brand extends CI_Controller {
 		$this->load->view('brand/v_creator_list',$data);
 		$this->load->view('brand/v_footer');
 	}
+	public function campaign_list()
+	{
+		
+		$this->load->view('brand/v_meta');
+		$this->load->view('brand/v_header');
+		$this->load->view('brand/v_campaign_list');
+		$this->load->view('brand/v_footer');
+	}
+	public function campaign_create()
+	{
+		
+		$this->load->view('brand/v_meta');
+		$this->load->view('brand/v_header');
+		$this->load->view('brand/v_campaign_create');
+		$this->load->view('brand/v_footer');
+	}
 }
