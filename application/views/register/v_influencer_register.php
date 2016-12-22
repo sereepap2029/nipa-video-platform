@@ -1,7 +1,7 @@
 <div class="row align-center">
     <div class="column small-6">
-        <h5>Brand register</h5>
-        <form method="post" action="<?=site_url('register/brand')?>">
+        <h5>Influencer register</h5>
+        <form method="post" action="<?=site_url('register/producer')?>">
             <div class="row">
                 <div class="medium-12 columns">
                     <label>Username
