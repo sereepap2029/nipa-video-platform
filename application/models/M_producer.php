@@ -58,9 +58,9 @@ class M_producer extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('producer', $data);
     }
-    function get_all_producer() { //no use
+    function get_all_producer($order_by="name",$type="asc") {
         $g_list = array();
-        $this->db->order_by("name", "asc");
+        $this->db->order_by($order_by, $type);
         $query = $this->db->get('producer');
         
         if ($query->num_rows() > 0) {

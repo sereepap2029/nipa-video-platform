@@ -1,3 +1,6 @@
+<?
+$ci =&get_instance();
+?>
 <div class="row creator-list">
     <div class="large-9 columns">
         <div class="callout">
@@ -15,6 +18,56 @@
                 </ul>
             </div>
             <div class="row align-center">
+                <?
+                foreach ($list as $key => $value) {
+                    ?>
+                    <div class="small-3 columns creator-items">
+                        <a href="<?
+                            if ($value->creator_type=="influencer") {
+                                echo site_url('influencer/profile/'.$value->id);
+                            }else{
+                                echo site_url('producer/profile/'.$value->id);
+                            }
+                            
+                        ?>">
+                        <?
+                        if ($value->profile_picture=="") {
+                            ?>
+                            <img class="img-creator" src="<?=site_url()?>/images/Producer.jpg" alt="Producer"></a>
+                            <?
+                        }else{
+                            ?>
+                            <img class="img-creator" src="<?=site_url("media/profile_picture/".$value->profile_picture)?>" alt="Producer"></a>
+                            <?
+                        }
+                        ?>
+                        <label class="name"><a href="<?
+                            if ($value->creator_type=="influencer") {
+                                echo site_url('influencer/profile/'.$value->id);
+                            }else{
+                                echo site_url('producer/profile/'.$value->id);
+                            }
+                            
+                        ?>"><?=$value->name?></a></label>
+                        <label class="desc"><?
+                            if ($value->creator_type=="influencer") {
+                                echo number_format($value->sucscribe)."/".number_format($value->view);
+                            }else{
+                                echo $value->career;
+                            }
+                            
+                        ?></label>
+                        <div class="small-12 columns stars">
+                            <img class="img-stars" src="<?=site_url()?>/images/star_rate.png">
+                            <img class="img-stars" src="<?=site_url()?>/images/star_rate.png">
+                            <img class="img-stars" src="<?=site_url()?>/images/star_rate.png">
+                            <img class="img-stars" src="<?=site_url()?>/images/star_rate.png">
+                            <img class="img-stars" src="<?=site_url()?>/images/star_rate.png">
+                        </div>
+                    </div>
+                    <?
+                }
+                ?>
                 <div class="small-3 columns creator-items">
                     <a href="<?=site_url('producer_profile/test-id')?>"><img class="img-creator" src="<?=site_url()?>/images/Producer.jpg" alt="Producer"></a>
                     <label class="name"><a href="<?=site_url('producer_profile/test-id')?>">Producer</a></label>

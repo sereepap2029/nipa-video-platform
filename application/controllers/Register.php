@@ -43,7 +43,7 @@ class Register extends CI_Controller {
 				);
 			$isuniq=$this->m_producer->check_dup_username($_POST['username']);
 			if ($isuniq) {
-				$this->m_producer->add_brand($ins_data);
+				$this->m_producer->add_producer($ins_data);
 				redirect();
 			}else{
 				echo "dupplicate username";
@@ -66,7 +66,7 @@ class Register extends CI_Controller {
 				);
 			$isuniq=$this->m_influencer->check_dup_username($_POST['username']);
 			if ($isuniq) {
-				$this->m_influencer->add_brand($ins_data);
+				$this->m_influencer->add_influencer($ins_data);
 				redirect();
 			}else{
 				echo "dupplicate username";

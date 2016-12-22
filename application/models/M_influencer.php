@@ -58,7 +58,7 @@ class M_influencer extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('influencer', $data);
     }
-    function get_all_influencer() { //no use
+    function get_all_influencer() {
         $g_list = array();
         $this->db->order_by("name", "asc");
         $query = $this->db->get('influencer');
