@@ -16,9 +16,34 @@ $ci =&get_instance();
                                         <input name="username" type="text" placeholder="Username">
                                     </label>
                                 </div>
+                                <fieldset class="large-6 columns">
+                                  <legend>ประเภท social</legend>
+                                  <input id="checkbox1" type="checkbox" name="facebook" value="facebook"><label for="checkbox1">Facebook</label>
+                                  <input id="checkbox2" type="checkbox" name="youtube" value="youtube"><label for="checkbox2">Youtube</label>
+                                </fieldset>
                                 <div class="medium-12 columns">
-                                    <label>Password
-                                        <input name="password" type="text" placeholder="password">
+                                    <label>ช่วงบัดเจต
+                                        <input name="budget-start" type="text" placeholder="budget-start">-<input name="budget-end" type="text" placeholder="budget-end">
+                                    </label>
+                                </div>
+                                <div class="medium-12 columns">
+                                    <label>รายละเอียด
+                                        <textarea placeholder="None"></textarea>
+                                    </label>
+                                </div>
+                                <div class="medium-12 columns">
+                                    <label>url ร้าน
+                                        <input name="url" type="text" placeholder="http://exp.com">
+                                    </label>
+                                </div>
+                                <div class="medium-12 columns">
+                                    <label>วันที่เริ่ม
+                                        <input type="text" name="start_date" class="datepicker">
+                                    </label>
+                                </div>
+                                <div class="medium-12 columns">
+                                    <label>วันที่สิ้นสุด
+                                        <input type="text" name="end_date" class="datepicker">
                                     </label>
                                 </div>
                                 <div class="medium-5 columns">
@@ -61,6 +86,8 @@ $ci =&get_instance();
     <script src="<?=site_url()?>/js/jquery.fileupload.js"></script>
     <script type="text/javascript">
     $(function() {
+
+        $( ".datepicker" ).datepicker();
         'use strict';
         // Change this to the location of your server-side upload handler:
         var url = '<?php echo site_url('upload/fileupload');?>';
