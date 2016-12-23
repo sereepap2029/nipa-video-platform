@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://nipa-video-platform/';
+$config['file_upload_url'] = 'http://103.212.37.26/';
 
 /*
 |--------------------------------------------------------------------------

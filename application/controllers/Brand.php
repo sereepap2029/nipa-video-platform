@@ -68,10 +68,25 @@ class Brand extends CI_Controller {
 	}
 	public function campaign_create()
 	{
-		
-		$this->load->view('brand/v_meta');
-		$this->load->view('brand/v_header');
-		$this->load->view('brand/v_campaign_create');
-		$this->load->view('brand/v_footer');
+		if (isset($_POST['username'])&&$_POST['username']!="") {
+			$producer_id=$this->m_producer->generate_id();
+			$ins_data = array(
+					'id' => $producer_id,
+					'username' => $_POST['username'],
+					'password' => $_POST['password'], 
+				);
+			$isuniq=$this->m_producer->check_dup_username($_POST['username']);
+			if ($isuniq) {
+				$this->m_producer->add_producer($ins_data);
+				redirect();
+			}else{
+				echo "dupplicate username";
+			}			
+		}else{
+			$this->load->view('brand/v_meta');
+			$this->load->view('brand/v_header');
+			$this->load->view('brand/v_campaign_create');
+			$this->load->view('brand/v_footer');
+		}
 	}
 }

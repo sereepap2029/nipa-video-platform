@@ -90,7 +90,7 @@ $ci =&get_instance();
         $( ".datepicker" ).datepicker();
         'use strict';
         // Change this to the location of your server-side upload handler:
-        var url = '<?php echo site_url('upload/fileupload');?>';
+        var url = '<?php echo upload_site_url('upload/fileupload');?>';
         $('#fileupload').fileupload({
                 url: url,
                 dataType: 'json',
@@ -102,7 +102,7 @@ $ci =&get_instance();
                             $("#img_tmp").attr('alt', 'File is too big');
                             $("#files").attr('value', '');
                         } else {
-                            $("#img_tmp").attr('src', '<?echo site_url();?>media/temp/' + file.name);
+                            $("#img_tmp").attr('src', '<?echo upload_site_url();?>media/temp/' + file.name);
                             $("#files").val(file.name);
                         }
                     });

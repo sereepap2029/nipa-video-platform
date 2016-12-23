@@ -1,5 +1,4 @@
 session_log/
 media/
 application/cache/
-application/config/
 .htaccess
