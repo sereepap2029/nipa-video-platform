@@ -8,6 +8,8 @@ class Brand extends CI_Controller {
         $this->load->model('m_brand'); 
         $this->load->model('m_producer');
         $this->load->model('m_influencer');
+        $this->load->model('m_campaign');
+        $this->load->model('m_time');
         if ($this->m_session_cache->get('brand_id')) {
             $user_data = $this->m_brand->get_brand_by_id($this->m_session_cache->get('brand_id'));
             if (isset($user_data->username)) {
@@ -68,20 +70,20 @@ class Brand extends CI_Controller {
 	}
 	public function campaign_create()
 	{
-		if (isset($_POST['username'])&&$_POST['username']!="") {
-			$producer_id=$this->m_producer->generate_id();
+		if (isset($_POST['name'])&&$_POST['name']!="") {
+			$campaign_id=$this->m_campaign->generate_id();
 			$ins_data = array(
-					'id' => $producer_id,
-					'username' => $_POST['username'],
-					'password' => $_POST['password'], 
+					'id' => $campaign_id,
+					'name' => $_POST['name'],
+					'budget_start' => $_POST['budget_start'],
+					'budget_end' => $_POST['budget_end'],
+					'url' => $_POST['url'],
+					'start_date' => $this->m_time->datepicker_to_unix($_POST['start_date']),
+					'end_date' => $this->m_time->datepicker_to_unix($_POST['end_date']),
+					'description' => $_POST['description'],
 				);
-			$isuniq=$this->m_producer->check_dup_username($_POST['username']);
-			if ($isuniq) {
-				$this->m_producer->add_producer($ins_data);
-				redirect();
-			}else{
-				echo "dupplicate username";
-			}			
+				$this->m_campaign->add_campaign($ins_data);
+				redirect("brand/campaign_list");
 		}else{
 			$this->load->view('brand/v_meta');
 			$this->load->view('brand/v_header');

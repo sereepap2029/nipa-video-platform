@@ -13,7 +13,7 @@ $ci =&get_instance();
                             <div class="row">
                                 <div class="medium-12 columns">
                                     <label>ชื่องาน
-                                        <input name="username" type="text" placeholder="Username">
+                                        <input name="name" type="text" placeholder="name">
                                     </label>
                                 </div>
                                 <fieldset class="large-6 columns">
@@ -23,12 +23,12 @@ $ci =&get_instance();
                                 </fieldset>
                                 <div class="medium-12 columns">
                                     <label>ช่วงบัดเจต
-                                        <input name="budget-start" type="text" placeholder="budget-start">-<input name="budget-end" type="text" placeholder="budget-end">
+                                        <input name="budget_start" type="text" placeholder="budget-start">-<input name="budget_end" type="text" placeholder="budget-end">
                                     </label>
                                 </div>
                                 <div class="medium-12 columns">
                                     <label>รายละเอียด
-                                        <textarea placeholder="None"></textarea>
+                                        <textarea name="description" placeholder="None"></textarea>
                                     </label>
                                 </div>
                                 <div class="medium-12 columns">
@@ -87,7 +87,11 @@ $ci =&get_instance();
     <script type="text/javascript">
     $(function() {
 
-        $( ".datepicker" ).datepicker();
+        $( ".datepicker" ).datepicker({
+              changeMonth: true,
+              changeYear: true,
+              dateFormat: "dd/mm/yy"
+          });
         'use strict';
         // Change this to the location of your server-side upload handler:
         var url = '<?php echo upload_site_url('upload/fileupload');?>';
