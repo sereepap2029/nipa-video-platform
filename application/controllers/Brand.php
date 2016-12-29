@@ -82,8 +82,28 @@ class Brand extends CI_Controller {
 					'end_date' => $this->m_time->datepicker_to_unix($_POST['end_date']),
 					'description' => $_POST['description'],
 				);
+			$result=$this->m_campaign->add_campaign_file($_POST['filename'],$campaign_id,$campaign_id."_profile",'profile');
+			if ($result === FALSE) { 
+				echo "false send post";
+				var_dump($result);
+			}else{
+				//print_r(json_decode($result));
+				$return_data=json_decode($result);
+				$ins_data['picture']=$return_data->new_filename;
 				$this->m_campaign->add_campaign($ins_data);
+				foreach ($_POST['social'] as $key => $value) {
+					$data_so = array(
+						'id' => $this->m_campaign->generate_campaign_has_social_id(),
+						'social' => $value, 
+						'campaign_id' => $campaign_id,
+						);
+					$this->m_campaign->add_campaign_has_social($data_so);
+				}
 				redirect("brand/campaign_list");
+			}
+
+			
+			
 		}else{
 			$this->load->view('brand/v_meta');
 			$this->load->view('brand/v_header');

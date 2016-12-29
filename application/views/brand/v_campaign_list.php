@@ -4,7 +4,7 @@ $ci =&get_instance();
 <div class="row creator-list">
     <div class="large-9 columns">
         <div class="callout">
-            <h3>This is Creator List</h3>
+            <h3>This Campaign List</h3>
             <a class="button" href="<?=site_url("brand/campaign_create")?>">Create campaign</a>
             <div class="row">
                 <ul class="align-center menu">

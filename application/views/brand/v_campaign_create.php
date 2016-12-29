@@ -18,8 +18,8 @@ $ci =&get_instance();
                                 </div>
                                 <fieldset class="large-6 columns">
                                   <legend>ประเภท social</legend>
-                                  <input id="checkbox1" type="checkbox" name="facebook" value="facebook"><label for="checkbox1">Facebook</label>
-                                  <input id="checkbox2" type="checkbox" name="youtube" value="youtube"><label for="checkbox2">Youtube</label>
+                                  <input id="checkbox1" type="checkbox" name="social[]" value="facebook"><label for="checkbox1">Facebook</label>
+                                  <input id="checkbox2" type="checkbox" name="social[]" value="youtube"><label for="checkbox2">Youtube</label>
                                 </fieldset>
                                 <div class="medium-12 columns">
                                     <label>ช่วงบัดเจต
