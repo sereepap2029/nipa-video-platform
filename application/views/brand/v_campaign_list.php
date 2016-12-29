@@ -20,6 +20,29 @@ $ci =&get_instance();
                 </ul>
             </div>
             <div class="row align-center">
+              <?
+              foreach ($campaign_list as $key => $value) {
+                ?>
+                <div class="row align-center">
+                    <div class="small-2 columns">
+                      <a href="<?=site_url("brand/campaign_detail/".$value->id)?>"><img src="<?=upload_site_url('media/campaign/profile/'.$value->picture);?>"></a>
+                    </div>
+                    <div class="small-10 columns">
+                      <label><?=$value->name?>/
+                      ประเภท :
+                      <?
+                      foreach ($value->social as $key2 => $value2) {
+                        echo $value2->social.",";
+                      }
+                      ?>
+                      /
+                      <?=$value->budget_start?>-<?=$value->budget_end?>/
+                      <?=$ci->m_time->unix_to_datepicker($value->start_date)?>-<?=$ci->m_time->unix_to_datepicker($value->end_date)?></label>
+                    </div>
+                </div>
+                <?
+              }
+              ?>
                           
             </div>
         </div>

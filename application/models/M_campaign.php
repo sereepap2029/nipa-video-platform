@@ -63,17 +63,23 @@ class M_campaign extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('campaign', $data);
     }
-    function get_all_campaign() { //no use
+    function get_all_campaign($brand_id="all") {
         $g_list = array();
         $this->db->order_by("name", "asc");
+        if ($brand_id!="all") {
+            $this->db->where('brand_id', $brand_id);
+        }
         $query = $this->db->get('campaign');
         
         if ($query->num_rows() > 0) {
             $g_list = $query->result();
+            foreach ($g_list as $key => $value) {
+                $g_list[$key]->social=$this->get_campaign_has_social_by_campaign_id($value->id);
+            }
         }
         return $g_list;
     }
-    function get_campaign_has_social_by_campaign_id($id) { //no use
+    function get_campaign_has_social_by_campaign_id($id) { 
         $g_list = array();
         $this->db->where('campaign_id', $id);
         $query = $this->db->get('campaign_has_social');

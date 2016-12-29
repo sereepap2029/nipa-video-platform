@@ -62,10 +62,10 @@ class Brand extends CI_Controller {
 	}
 	public function campaign_list()
 	{
-		
+		$data['campaign_list']=$this->m_campaign->get_all_campaign($this->user_data->id);
 		$this->load->view('brand/v_meta');
 		$this->load->view('brand/v_header');
-		$this->load->view('brand/v_campaign_list');
+		$this->load->view('brand/v_campaign_list',$data);
 		$this->load->view('brand/v_footer');
 	}
 	public function campaign_create()
@@ -81,6 +81,7 @@ class Brand extends CI_Controller {
 					'start_date' => $this->m_time->datepicker_to_unix($_POST['start_date']),
 					'end_date' => $this->m_time->datepicker_to_unix($_POST['end_date']),
 					'description' => $_POST['description'],
+					'brand_id' => $this->user_data->id,
 				);
 			$result=$this->m_campaign->add_campaign_file($_POST['filename'],$campaign_id,$campaign_id."_profile",'profile');
 			if ($result === FALSE) { 
