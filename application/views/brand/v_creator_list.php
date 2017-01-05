@@ -33,11 +33,11 @@ $ci =&get_instance();
                         <?
                         if ($value->profile_picture=="") {
                             ?>
-                            <img class="img-creator" src="<?=site_url()?>/images/Producer.jpg" alt="Producer"></a>
+                            <img class="img-creator" src="<?=upload_site_url()?>/images/Producer.jpg" alt="Producer"></a>
                             <?
                         }else{
                             ?>
-                            <img class="img-creator" src="<?=site_url("media/profile_picture/".$value->profile_picture)?>" alt="Producer"></a>
+                            <img class="img-creator" src="<?=upload_site_url("media/profile_picture/".$value->profile_picture)?>" alt="Producer"></a>
                             <?
                         }
                         ?>

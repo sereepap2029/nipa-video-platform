@@ -5,6 +5,8 @@ class M_campaign extends CI_Model
     public function __construct() {
         parent::__construct();
         $this->load->model("m_stringlib");
+        $this->load->model("m_influencer");
+        $this->load->model("m_producer");
     }
     
     function generate_id() {
@@ -26,7 +28,21 @@ class M_campaign extends CI_Model
         $clam_id = '';
         do {
             $temp_id = $this->m_stringlib->uniqueAlphaNum10();
-            $query = $this->db->get_where('campaign', array('id' => $temp_id));
+            $query = $this->db->get_where('campaign_has_social', array('id' => $temp_id));
+            if ($query->num_rows() == 0) {
+                $clam_id = $temp_id;
+                $isuniq = TRUE;
+            }
+        } while (!$isuniq);
+        
+        return $clam_id;
+    }
+    function generate_campaign_has_creator_id() {
+        $isuniq = FALSE;
+        $clam_id = '';
+        do {
+            $temp_id = $this->m_stringlib->uniqueAlphaNum10();
+            $query = $this->db->get_where('campaign_has_creator', array('id' => $temp_id));
             if ($query->num_rows() == 0) {
                 $clam_id = $temp_id;
                 $isuniq = TRUE;
@@ -86,6 +102,26 @@ class M_campaign extends CI_Model
         
         if ($query->num_rows() > 0) {
             $g_list = $query->result();
+        }
+        return $g_list;
+    }
+    function get_campaign_has_creator_by_campaign_id($id,$invite_type="all") { 
+        $g_list = array();
+        $this->db->where('campaign_id', $id);
+        if ($invite_type!="all") {
+            $this->db->where('invite_type', $invite_type);
+        }        
+        $query = $this->db->get('campaign_has_creator');
+        
+        if ($query->num_rows() > 0) {
+            $g_list = $query->result();
+            foreach ($g_list as $key => $value) {
+                if ($value->creator_type=="producer") {
+                    $g_list[$key]=$this->m_producer->get_producer_by_id($value->creator_id);
+                }else{
+                    $g_list[$key]=$this->m_influencer->get_influencer_by_id($value->creator_id);
+                }
+            }
         }
         return $g_list;
     }

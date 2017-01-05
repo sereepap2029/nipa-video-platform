@@ -68,6 +68,17 @@ class Brand extends CI_Controller {
 		$this->load->view('brand/v_campaign_list',$data);
 		$this->load->view('brand/v_footer');
 	}
+	public function campaign_detail()
+	{
+		$campaign_id=$this->uri->segment(3,'');
+		$data['campaign']=$this->m_campaign->get_campaign_by_id($campaign_id);
+		$data['creators_invited']=$this->m_campaign->get_campaign_has_creator_by_campaign_id($campaign_id,"invite");
+		$data['creators_submit']=$this->m_campaign->get_campaign_has_creator_by_campaign_id($campaign_id,"submit");
+		$this->load->view('brand/v_meta');
+		$this->load->view('brand/v_header');
+		$this->load->view('brand/v_campaign_detail',$data);
+		$this->load->view('brand/v_footer');
+	}
 	public function campaign_create()
 	{
 		if (isset($_POST['name'])&&$_POST['name']!="") {
