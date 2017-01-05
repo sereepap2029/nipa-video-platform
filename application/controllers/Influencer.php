@@ -6,11 +6,25 @@ class Influencer extends CI_Controller {
 	public function __construct() {
         parent::__construct();        
         $this->load->model('m_influencer');
+        $this->load->model('m_brand'); 
+        $this->load->model('m_campaign');
+        $this->load->model('m_time');
+        if ($this->m_session_cache->get('brand_id')) {
+            $user_brand_data = $this->m_brand->get_brand_by_id($this->m_session_cache->get('brand_id'));
+            if (isset($user_brand_data->username)) {
+                $this->user_brand_data = $user_brand_data;
+            }
+        }
     }
 	public function profile()
 	{
 		$id=$this->uri->segment(3,'');
 		$data['profile']=$this->m_influencer->get_influencer_by_id($id);
+		if (isset($this->user_brand_data)) {
+			$data['brand_data']=$this->user_brand_data;
+			$data['campaign_list']=$this->m_campaign->get_all_campaign($this->user_brand_data->id);
+			$data['invited_campaign']=$this->m_campaign->get_campaign_has_creator_by_creator_id_and_brand_id($id,$this->user_brand_data->id);
+		}
 		$this->load->view('influencer/v_meta');
 		$this->load->view('influencer/v_header');
 		$this->load->view('influencer/v_profile',$data);

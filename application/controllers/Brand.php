@@ -123,4 +123,52 @@ class Brand extends CI_Controller {
 			$this->load->view('brand/v_footer');
 		}
 	}
+	// ajax handle region
+	public function invite_producer_to_camp()
+	{
+		header('Content-Type: application/json');
+        $json = array();
+        $json['flag']="OK";
+        $this->m_campaign->delete_campaign_has_creator_by_creator_id_and_brand_id($_POST['creator_id'],$this->user_data->id);
+        if (isset($_POST['select'])) {
+	        foreach ($_POST['select'] as $key => $value) {
+	        	$data_so = array(
+					'id' => $this->m_campaign->generate_campaign_has_creator_id(),
+					'creator_id' => $_POST['creator_id'], 
+					'creator_type' => "producer",
+					'campaign_id' => $value,
+					'invite_type' => "invite",
+					'brand_id' => $this->user_data->id,
+					);
+				$this->m_campaign->add_campaign_has_creator($data_so);
+	        }
+	    }
+        
+        echo json_encode($json);
+		
+	}
+	public function invite_influencer_to_camp()
+	{
+		header('Content-Type: application/json');
+        $json = array();
+        $json['flag']="OK";
+        $this->m_campaign->delete_campaign_has_creator_by_creator_id_and_brand_id($_POST['creator_id'],$this->user_data->id);
+        if (isset($_POST['select'])) {
+	        foreach ($_POST['select'] as $key => $value) {
+	        	$data_so = array(
+					'id' => $this->m_campaign->generate_campaign_has_creator_id(),
+					'creator_id' => $_POST['creator_id'], 
+					'creator_type' => "influencer",
+					'campaign_id' => $value,
+					'invite_type' => "invite",
+					'brand_id' => $this->user_data->id,
+					);
+				$this->m_campaign->add_campaign_has_creator($data_so);
+	        }
+	    }
+        
+        echo json_encode($json);
+		
+	}
+
 }

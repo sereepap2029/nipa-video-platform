@@ -64,6 +64,11 @@ class M_campaign extends CI_Model
         $this->db->where('campaign_id', $id);
         $this->db->delete('campaign_has_social');
     }
+    function delete_campaign_has_creator_by_creator_id_and_brand_id($creator_id,$brand_id) {
+        $this->db->where('creator_id', $creator_id);
+        $this->db->where('brand_id', $brand_id);
+        $this->db->delete('campaign_has_creator');
+    }
 
     function add_campaign($data) {
         $this->db->insert('campaign', $data);
@@ -71,11 +76,14 @@ class M_campaign extends CI_Model
     function add_campaign_has_social($data) {
         $this->db->insert('campaign_has_social', $data);
     }
+    function add_campaign_has_creator($data) {
+        $this->db->insert('campaign_has_creator', $data);
+    }
     function update_campaign_has_social($data, $id) { //no use
         $this->db->where('id', $id);
         $this->db->update('campaign_has_social', $data);
     }
-    function update_campaign($data, $id) { //no use
+    function update_campaign($data, $id) {
         $this->db->where('id', $id);
         $this->db->update('campaign', $data);
     }
@@ -105,11 +113,14 @@ class M_campaign extends CI_Model
         }
         return $g_list;
     }
-    function get_campaign_has_creator_by_campaign_id($id,$invite_type="all") { 
+    function get_campaign_has_creator_by_campaign_id($id,$invite_type="all",$brand_id="all") { 
         $g_list = array();
         $this->db->where('campaign_id', $id);
         if ($invite_type!="all") {
             $this->db->where('invite_type', $invite_type);
+        }  
+        if ($brand_id!="all") {
+            $this->db->where('brand_id', $brand_id);
         }        
         $query = $this->db->get('campaign_has_creator');
         
@@ -124,6 +135,21 @@ class M_campaign extends CI_Model
             }
         }
         return $g_list;
+    }
+    function get_campaign_has_creator_by_creator_id_and_brand_id($creator_id,$brand_id) { 
+        $g_list = array();
+        $g_list2 = array();
+        $this->db->where('creator_id', $creator_id);
+        $this->db->where('brand_id', $brand_id);
+        $query = $this->db->get('campaign_has_creator');
+        
+        if ($query->num_rows() > 0) {
+            $g_list = $query->result();
+            foreach ($g_list as $key => $value) {
+                $g_list2[$value->campaign_id]=$value;
+            }
+        }
+        return $g_list2;
     }
     function get_all_campaign_has_social() {//no use
         $g_list = array();

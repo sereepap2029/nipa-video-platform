@@ -21,7 +21,7 @@ $ci =&get_instance();
                   </li>
                 </ul>
             </div>
-            <div class="row align-center c-invited c-holder">
+            <div class="row c-invited c-holder">
             <h3>เราเชิญ</h3>
               <?
               foreach ($creators_invited as $key => $value) {
@@ -64,7 +64,7 @@ $ci =&get_instance();
               ?>
                           
             </div>
-            <div class="row align-center c-submit c-holder">
+            <div class="row c-submit c-holder">
             <h3>ยื่นมา</h3>
               <?
               foreach ($creators_submit as $key => $value) {
@@ -119,7 +119,7 @@ $ci =&get_instance();
 </div>
 <script type="text/javascript">
   function c_show(div_class){
-    $(".c-holder").fadeOut("slow",function(){
+    $(".c-holder").fadeOut("fast",function(){
       setTimeout(function(){ $("."+div_class).fadeIn(); }, 500);
       
     });
