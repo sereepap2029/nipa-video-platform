@@ -104,4 +104,23 @@ class M_brand extends CI_Model
         }
         return $business;
     }
+    function get_brand_by_username_password($username,$password) {
+        $brand = new stdClass();
+        $query = $this->db->get_where('brand', array('username' => $username,'password' => $password));
+       
+        if ($query->num_rows() > 0) {
+            $brand = $query->result();
+            $brand = $brand[0];
+       }
+        return $brand;
+    }
+    function check_dup_username($username) {
+       $isuniq = FALSE;
+       $query = $this->db->get_where('brand', array('username' => $username));
+           if ($query->num_rows() == 0) {
+               $isuniq = TRUE;
+           }
+       
+      return $isuniq;
+    }
 }
