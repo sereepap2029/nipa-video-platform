@@ -14,13 +14,13 @@
                         <br />These online courses offer you a chance to better understand how Foundation works and how you can master it to create awesome projects.</p>
                 </div>
                 <div class="large-4 medium-4 columns">
-                    <p><a href="http://foundation.zurb.com/forum">Campaign</a>
+                    <p><a href="<?=site_url("brand/campaign_create")?>">Create Campaign</a>
                         <br />Join the Foundation community to ask a question or show off your knowlege.</p>
                 </div>
             </div>
             <div class="row">
                 <div class="large-4 medium-4 medium-push-2 columns">
-                    <p><a href="http://github.com/zurb/foundation">My Campaign</a>
+                    <p><a href="<?=site_url("brand/campaign_list")?>">My Campaign</a>
                         <br />Latest code, issue reports, feature requests and more.</p>
                 </div>
                 <div class="large-4 medium-4 medium-pull-2 columns">
