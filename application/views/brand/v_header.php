@@ -25,8 +25,8 @@
 	<div class="small-10 columns">
         <a class="button primary" href="<?=site_url("brand")?>">Dashboard</a>
         <a class="button primary" href="<?=site_url("brand/creator")?>">Creator</a>
-        <a class="button primary" href="<?=site_url("brand/campaign_list")?>">Campaign</a>
-        <a class="button primary" href="#">My Campaign</a>
+        <a class="button primary" href="<?=site_url("brand/campaign_create")?>">Create Campaign</a>
+        <a class="button primary" href="<?=site_url("brand/campaign_list")?>">My Campaign</a>
         <a class="button primary" href="#">Chat Room</a>
         <a class="button primary" href="#">Reward</a>
     </div>
