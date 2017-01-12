@@ -44,4 +44,9 @@ class Producer extends CI_Controller {
 		$this->load->view('producer/v_profile',$data);
 		$this->load->view('producer/v_footer');
 	}
+	public function dashboard()
+	{
+		$this->require_auth();
+		echo "OK OK OK";
+	}
 }

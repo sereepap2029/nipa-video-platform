@@ -44,4 +44,9 @@ class Influencer extends CI_Controller {
 		$this->load->view('influencer/v_profile',$data);
 		$this->load->view('influencer/v_footer');
 	}
+	public function dashboard()
+	{
+		$this->require_auth();
+		echo "OK OK OK";
+	}
 }
