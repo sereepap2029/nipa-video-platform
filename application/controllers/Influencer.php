@@ -16,6 +16,20 @@ class Influencer extends CI_Controller {
             }
         }
     }
+    private function require_auth(){
+    	if ($this->m_session_cache->get('influencer_id')) {
+            $user_data = $this->m_influencer->get_influencer_by_id($this->m_session_cache->get('influencer_id'));
+            if (isset($user_data->username)) {
+                $this->user_data = $user_data;
+            }
+            else {
+                redirect('login/logout');
+            }
+        }
+        else {
+            redirect('login/logout');
+        }
+    }
 	public function profile()
 	{
 		$id=$this->uri->segment(3,'');

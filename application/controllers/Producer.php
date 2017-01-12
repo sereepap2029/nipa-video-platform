@@ -16,6 +16,20 @@ class Producer extends CI_Controller {
             }
         }
     }
+    private function require_auth(){
+    	if ($this->m_session_cache->get('producer_id')) {
+            $user_data = $this->m_producer->get_producer_by_id($this->m_session_cache->get('producer_id'));
+            if (isset($user_data->username)) {
+                $this->user_data = $user_data;
+            }
+            else {
+                redirect('login/logout');
+            }
+        }
+        else {
+            redirect('login/logout');
+        }
+    }
 	public function profile()
 	{
 		$id=$this->uri->segment(3,'');
