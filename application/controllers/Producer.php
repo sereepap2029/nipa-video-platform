@@ -47,6 +47,11 @@ class Producer extends CI_Controller {
 	public function dashboard()
 	{
 		$this->require_auth();
-		echo "OK OK OK";
+		$data['profile']=$this->m_producer->get_producer_by_id($this->m_session_cache->get('producer_id'));
+		$this->load->view('producer/v_meta');
+		$this->load->view('producer/v_header');
+		$this->load->view('producer/v_header_button');
+		$this->load->view('producer/v_dashboard',$data);
+		$this->load->view('producer/v_footer');
 	}
 }
