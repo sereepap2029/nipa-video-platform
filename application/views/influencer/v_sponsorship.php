@@ -104,7 +104,7 @@ $ci =&get_instance();
                                                         <h3>1 Day 03 Hour</h3>
                                                     </div>
                                                     <div class="small-12 columns">
-                                                      <a href="<?=site_url("brand/campaign_detail/" . $value->id)?>"><img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>"></a>
+                                                     <img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>">
                                                     </div>
                                                     <div class="small-12 columns">
                                                       <label><?=$value->name?><br/>
@@ -124,7 +124,7 @@ $ci =&get_instance();
                                                         <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
                                                     </div>
                                                     <div class="small-6 columns">
-                                                        <a href="javascript:;" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
+                                                        <a href="javascript:open_campaign_detail('<?=$value->id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
                                                     </div>
                                                     <div class="small-12 columns">
                                                     <a class="button primary" data-open="propos-modal" href="javascript:;">SEND PROPOSAL</a>
@@ -215,6 +215,8 @@ $ci =&get_instance();
         </div>
     </div>
     <div class="reveal" id="detail-modal" data-reveal data-animation-in="rotateIn animated" >
+        <div class="camp-region">
+        </div>
         <div class="row align-center">
             <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">OK</a>
         </div>
@@ -231,22 +233,14 @@ $ci =&get_instance();
         </button>
     </div>
     <script type="text/javascript">
-    function add_to_campaign() {
-        //$("#invite-modal-ok").html("saving.....!!");
-        var selected_camp = $("input[name='select[]']").serialize()
+    function open_campaign_detail(camp_id) {
         $.ajax({
-                method: "POST",
-                url: "<?php echo site_url("brand/invite_influencer_to_camp/"); ?>",
-                data: "creator_id=<?=$profile->id?>&" + selected_camp
+                method: "get",
+                url: "<?php echo site_url("ajax/campaign/get_camp_detail"); ?>",
+                data: "camp_id=" + camp_id
             })
             .done(function(data) {
-                if (data['flag'] == "OK") {
-                    $("#invite-modal-ok").html("OK");
-                    $('#invite-modal').foundation('close');
-                } else {
-                    alert(data['flag']);
-                    $("#close_but").html("OK");
-                }
+                    $("#detail-modal .camp-region").html(data);
             });
 
     }
