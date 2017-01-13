@@ -9,7 +9,7 @@ $ci =&get_instance();
     <div class="row creator-list">
         <div class="large-12 columns">
             <div class="row align-center">
-                <div class="small-3 columns">
+                <div class="small-2 columns">
                     <div class="callout">
                         <div class="row align-center">
                             <div class="small-12 columns">
@@ -20,7 +20,7 @@ $ci =&get_instance();
                         </div>
                     </div>
                 </div>
-                <div class="small-9 columns">
+                <div class="small-10 columns">
                     <div class="callout">
                         <div class="row">
                             <div class="small-12 columns c-holder c-campaign" style="display: block;">
@@ -40,7 +40,7 @@ $ci =&get_instance();
                                             <option value="Anguilla">Anguilla</option>
                                         </select>
                                     </div>
-                                    <div class="small-4 columns">
+                                    <div class="small-3 columns">
                                         <select data-placeholder="Brand" class="chosen-select" tabindex="2">
                                             <option value=""></option>
                                             <option value="United States">United States</option>
@@ -65,7 +65,7 @@ $ci =&get_instance();
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select>
                                     </div>
-                                    <div class="small-2 columns">
+                                    <div class="small-3 columns">
                                         <select data-placeholder="Price" class="chosen-select" tabindex="2">
                                             <option value=""></option>
                                             <option value="Wallis and Futuna">0 - 5,000</option>
@@ -119,7 +119,7 @@ $ci =&get_instance();
                                             <option value="Anguilla">Anguilla</option>
                                         </select>
                                     </div>
-                                    <div class="small-4 columns">
+                                    <div class="small-3 columns">
                                         <select data-placeholder="Brand" class="chosen-select" tabindex="2">
                                             <option value=""></option>
                                             <option value="United States">United States</option>
@@ -143,7 +143,7 @@ $ci =&get_instance();
                                             <option value="Zimbabwe">Zimbabwe</option>
                                         </select>
                                     </div>
-                                    <div class="small-2 columns">
+                                    <div class="small-3 columns">
                                         <select data-placeholder="Price" class="chosen-select" tabindex="2">
                                             <option value=""></option>
                                             <option value="Wallis and Futuna">0 - 5,000</option>
