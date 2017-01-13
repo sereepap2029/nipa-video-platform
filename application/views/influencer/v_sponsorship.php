@@ -107,15 +107,15 @@ $ci =&get_instance();
                                                       <a href="<?=site_url("brand/campaign_detail/" . $value->id)?>"><img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>"></a>
                                                     </div>
                                                     <div class="small-12 columns">
-                                                      <label><?=$value->name?><br>
+                                                      <label><?=$value->name?><br/>
                                                       ประเภท :
                                                       <?
                                                       foreach ($value->social as $key2 => $value2) {
                                                         echo $value2->social.",";
                                                       }
                                                       ?>
-                                                      <br>
-                                                      <?=$value->budget_start?>-<?=$value->budget_end?><br>
+                                                      <br/>
+                                                      <?=$value->budget_start?>-<?=$value->budget_end?><br/>
                                                       <?=$ci->m_time->unix_to_datepicker($value->start_date)?>-<?=$ci->m_time->unix_to_datepicker($value->end_date)?></label>
                                                     </div>
                                                 </div>
@@ -124,10 +124,10 @@ $ci =&get_instance();
                                                         <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
                                                     </div>
                                                     <div class="small-6 columns">
-                                                        <a href="javascript:;">detail</a>
+                                                        <a href="javascript:;" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
                                                     </div>
                                                     <div class="small-12 columns">
-                                                    <a class="button primary" href="javascript:;">SEND PROPOSAL</a>
+                                                    <a class="button primary" data-open="propos-modal" href="javascript:;">SEND PROPOSAL</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,7 +214,42 @@ $ci =&get_instance();
             </div>
         </div>
     </div>
+    <div class="reveal" id="detail-modal" data-reveal data-animation-in="rotateIn animated" >
+        <div class="row align-center">
+            <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">OK</a>
+        </div>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="reveal" id="propos-modal" data-reveal data-animation-in="rotateIn animated" >
+        <div class="row align-center">
+            <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">OK</a>
+        </div>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <script type="text/javascript">
+    function add_to_campaign() {
+        //$("#invite-modal-ok").html("saving.....!!");
+        var selected_camp = $("input[name='select[]']").serialize()
+        $.ajax({
+                method: "POST",
+                url: "<?php echo site_url("brand/invite_influencer_to_camp/"); ?>",
+                data: "creator_id=<?=$profile->id?>&" + selected_camp
+            })
+            .done(function(data) {
+                if (data['flag'] == "OK") {
+                    $("#invite-modal-ok").html("OK");
+                    $('#invite-modal').foundation('close');
+                } else {
+                    alert(data['flag']);
+                    $("#close_but").html("OK");
+                }
+            });
+
+    }
 
     window.chartColors = {
         red: 'rgb(255, 99, 132)',
@@ -228,25 +263,28 @@ $ci =&get_instance();
     window.randomScalingFactor = function() {
         return (Math.random() > 0.5 ? 1.0 : 0.1) * Math.round(Math.random() * 100);
     }
-    function animate_camp(){
-        $(".anim").css("visibility","visible");
+
+    function animate_camp() {
+        $(".anim").css("visibility", "visible");
         $(".anim").addClass("animated");
     }
     $(function() {
-        
 
-        var $grid=$('.masonry').masonry({
-          // options
-          itemSelector: '.masonry-item',
-          percentPosition: true,
-          transitionDuration: '0.8s',
-          isInitLayout: false,
+
+        var $grid = $('.masonry').masonry({
+            // options
+            itemSelector: '.masonry-item',
+            percentPosition: true,
+            transitionDuration: '0.8s',
+            isInitLayout: false,
         });
         //animate_camp()
-        $grid.on( 'layoutComplete', animate_camp );
+        $grid.on('layoutComplete', animate_camp);
         $grid.masonry();
         var chosen_config = {
-            '.chosen-select': {width: "100%"},
+            '.chosen-select': {
+                width: "100%"
+            },
             '.chosen-select-deselect': {
                 allow_single_deselect: true
             },
