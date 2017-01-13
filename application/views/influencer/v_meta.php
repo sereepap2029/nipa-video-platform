@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?=site_url()?>css/app.css">
     <link rel="stylesheet" href="<?=site_url()?>css/styles.css">
     <link rel="stylesheet" href="<?=site_url()?>css/chosen.min.css">
+    <link rel="stylesheet" href="<?=site_url()?>css/animate.css">
     <script src="<?=site_url()?>js/vendor/jquery.js"></script>
   </head>
   <body>

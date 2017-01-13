@@ -87,11 +87,14 @@ class M_campaign extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('campaign', $data);
     }
-    function get_all_campaign($brand_id="all") {
+    function get_all_campaign($brand_id="all",$status="all") {
         $g_list = array();
         $this->db->order_by("name", "asc");
         if ($brand_id!="all") {
             $this->db->where('brand_id', $brand_id);
+        }
+        if ($status!="all") {
+            $this->db->where('status', $status);
         }
         $query = $this->db->get('campaign');
         

@@ -94,11 +94,46 @@ $ci =&get_instance();
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="small-12 columns">
-                                        การจ้างงานทั้งหมด <span class="label alert">19</span> Campaign (2016)
-                                        <canvas id="canvas"></canvas>
-                                        <progress id="animationProgress" max="1" value="0" style="width: 100%"></progress>
-                                        <button id="randomizeData">Randomize Data</button>
+                                    <div class="small-12 masonry">
+                                        <?
+                                          foreach ($campaign_list as $key => $value) {
+                                            ?>
+                                            <div class="small-4 masonry-item columns anim zoomIn" style="visibility:hidden;">
+                                                <div class="row align-center">
+                                                    <div class="small-12 columns">
+                                                        <h3>1 Day 03 Hour</h3>
+                                                    </div>
+                                                    <div class="small-12 columns">
+                                                      <a href="<?=site_url("brand/campaign_detail/" . $value->id)?>"><img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>"></a>
+                                                    </div>
+                                                    <div class="small-12 columns">
+                                                      <label><?=$value->name?><br>
+                                                      ประเภท :
+                                                      <?
+                                                      foreach ($value->social as $key2 => $value2) {
+                                                        echo $value2->social.",";
+                                                      }
+                                                      ?>
+                                                      <br>
+                                                      <?=$value->budget_start?>-<?=$value->budget_end?><br>
+                                                      <?=$ci->m_time->unix_to_datepicker($value->start_date)?>-<?=$ci->m_time->unix_to_datepicker($value->end_date)?></label>
+                                                    </div>
+                                                </div>
+                                                <div class="row align-center">
+                                                    <div class="small-3 columns">
+                                                        <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
+                                                    </div>
+                                                    <div class="small-6 columns">
+                                                        <a href="javascript:;">detail</a>
+                                                    </div>
+                                                    <div class="small-12 columns">
+                                                    <a class="button primary" href="javascript:;">SEND PROPOSAL</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?
+                                          }
+                                          ?>
                                     </div>
                                 </div>
                             </div>
@@ -180,6 +215,7 @@ $ci =&get_instance();
         </div>
     </div>
     <script type="text/javascript">
+
     window.chartColors = {
         red: 'rgb(255, 99, 132)',
         orange: 'rgb(255, 159, 64)',
@@ -192,75 +228,23 @@ $ci =&get_instance();
     window.randomScalingFactor = function() {
         return (Math.random() > 0.5 ? 1.0 : 0.1) * Math.round(Math.random() * 100);
     }
+    function animate_camp(){
+        $(".anim").css("visibility","visible");
+        $(".anim").addClass("animated");
+    }
     $(function() {
+        
 
-        var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var progress = document.getElementById('animationProgress');
-        var config = {
-            type: 'line',
-            data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July2"],
-                datasets: [{
-                    label: "My First dataset ",
-                    fill: false,
-                    borderColor: window.chartColors.red,
-                    backgroundColor: window.chartColors.red,
-                    data: [
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor()
-                    ]
-                }, {
-                    label: "My Second dataset ",
-                    fill: false,
-                    borderColor: window.chartColors.blue,
-                    backgroundColor: window.chartColors.blue,
-                    data: [
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor(),
-                        randomScalingFactor()
-                    ]
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Chart.js Line Chart - Animation Progress Bar"
-                },
-                animation: {
-                    duration: 2000,
-                    onProgress: function(animation) {
-                        progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
-                    },
-                    onComplete: function(animation) {
-                        window.setTimeout(function() {
-                            progress.value = 0;
-                        }, 2000);
-                    }
-                }
-            }
-        };
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myLine = new Chart(ctx, config);
-
-        document.getElementById('randomizeData').addEventListener('click', function() {
-            config.data.datasets.forEach(function(dataset) {
-                dataset.data = dataset.data.map(function() {
-                    return randomScalingFactor();
-                });
-            });
-
-            window.myLine.update();
+        var $grid=$('.masonry').masonry({
+          // options
+          itemSelector: '.masonry-item',
+          percentPosition: true,
+          transitionDuration: '0.8s',
+          isInitLayout: false,
         });
-
+        //animate_camp()
+        $grid.on( 'layoutComplete', animate_camp );
+        $grid.masonry();
         var chosen_config = {
             '.chosen-select': {width: "100%"},
             '.chosen-select-deselect': {
