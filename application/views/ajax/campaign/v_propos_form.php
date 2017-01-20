@@ -65,6 +65,30 @@ $ci =&get_instance();
                         <input id="img_port" type="hidden" name="img_port" value="">
                     </div>
                 </div>
+
+                <div class="medium-12 columns">
+                    <label>ชื่อเล่น
+                        <input name="password" type="text" placeholder="password">
+                    </label>
+                </div>
+                <div class="medium-12 columns">
+                    <label>
+                        เกี่ยวกับคุณ
+                        <textarea placeholder="None"></textarea>
+                    </label>
+                </div>
+
+                <div class="medium-12 columns">
+                    <label>เสนอราคาจ้างงาน
+                        <input name="password" type="text" placeholder="password">
+                    </label>
+                </div>
+                <div class="medium-12 columns">
+                    <label>
+                        ระบุสัญญาจ้างงาน
+                        <textarea placeholder="None"></textarea>
+                    </label>
+                </div>
                 <div class="medium-6 columns">
                     <a href="<?=site_url()?>" class="button secondary">Next</a>
                 </div>
