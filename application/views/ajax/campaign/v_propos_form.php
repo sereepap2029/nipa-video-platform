@@ -8,7 +8,7 @@ $ci =&get_instance();
 </style>
 <div class="row">
     <div class="column small-12">
-        <h5>Producer register</h5>
+        <h5>Send Proposal</h5>
         <div class="row step-form step-form-1" style="display: block;">
             <div class="medium-12 columns">
                 <label>ชื่อ นามสกุล

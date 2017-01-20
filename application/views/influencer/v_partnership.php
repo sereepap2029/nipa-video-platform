@@ -1,310 +1,262 @@
 <?
 $ci =&get_instance();
 ?>
-    <style type="text/css">
-    .c-holder {
-        display: none;
-    }
-    </style>
-    <div class="row creator-list">
-        <div class="large-12 columns">
-            <div class="row align-center">
-                <div class="small-2 columns">
-                    <div class="callout">
-                        <div class="row align-center">
-                            <div class="small-12 columns">
-                                <a class="button primary" href="javascript:c_show('c-campaign')">สร้าง Campaign</a>
-                                <br>
-                                <a class="button primary" href="javascript:c_show('c-interest')">ได้รับคำเชิญ</a>
-                                <br>
-                                <a class="button primary" href="javascript:c_show('c-mycamp')">แคมเปญของฉัน</a>
-                            </div>
+ <style type="text/css">
+.c-holder {
+    display: none;
+}
+</style>
+<div class="row creator-list">
+    <div class="large-12 columns">
+        <div class="row align-center">
+            <div class="small-2 columns">
+                <div class="callout">
+                    <div class="row align-center">
+                        <div class="small-12 columns">
+                            <a class="button primary" href="javascript:c_show('c-campaign')">สร้าง Campaign</a>
+                            <br>
+                            <a class="button primary" href="javascript:c_show('c-interest')">ได้รับคำเชิญ</a>
+                            <br>
+                            <a class="button primary" href="javascript:c_show('c-mycamp')">แคมเปญของฉัน</a>
                         </div>
                     </div>
                 </div>
-                <div class="small-10 columns">
-                    <div class="callout">
-                        <div class="row">
-                            <div class="small-12 columns c-holder c-campaign" style="display: block;">
-                                <div class="row">
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Categories" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="United States">United States</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="Afghanistan">Afghanistan</option>
-                                            <option value="Aland Islands">Aland Islands</option>
-                                            <option value="Albania">Albania</option>
-                                            <option value="Algeria">Algeria</option>
-                                            <option value="American Samoa">American Samoa</option>
-                                            <option value="Andorra">Andorra</option>
-                                            <option value="Angola">Angola</option>
-                                            <option value="Anguilla">Anguilla</option>
-                                        </select>
+            </div>
+            <div class="small-10 columns">
+                <div class="callout">
+                    <div class="row">
+                        <div class="small-12 columns c-holder c-campaign" style="display: block;">
+                            <div class="row">
+                                <h5>Create Campaign</h5>
+                                <form method="post" action="<?=site_url('brand/campaign_create')?>">
+                                    <h5 style="color:red"><?if($this->session->userdata('create_error')){echo $this->session->userdata('create_error');$this->session->unset_userdata('create_error');}?></h5>
+                                    <div class="row">
+                                        <div class="large-9 columns">
+                                            <div class="row">
+                                                <div class="medium-12 columns">
+                                                    <label>ชื่องาน
+                                                        <input name="name" type="text" placeholder="name">
+                                                    </label>
+                                                </div>
+                                                <fieldset class="large-6 columns">
+                                                    <legend>ความเป็นส่วนตัว</legend>
+                                                    <input type="radio" name="pokemon" value="private" id="pokemonRed" required><label for="pokemonRed">ส่วนตัว</label>
+                                                    <input type="radio" name="pokemon" value="public" id="pokemonBlue"><label for="pokemonBlue">สาธารณะ</label>
+                                                    
+                                                  </fieldset>
+                                                <div class="medium-12 columns">
+                                                    <label>ช่วงบัดเจต
+                                                        <input name="budget_start" type="text" placeholder="budget-start">-
+                                                        <input name="budget_end" type="text" placeholder="budget-end">
+                                                    </label>
+                                                </div>
+                                                <div class="medium-12 columns">
+                                                    <label>แนะนำตัวเอง
+                                                        <textarea name="description" placeholder="None"></textarea>
+                                                    </label>
+                                                </div>
+                                                <div class="medium-12 columns">
+                                                    <label>วันที่เริ่ม
+                                                        <input type="text" name="start_date" class="datepicker">
+                                                    </label>
+                                                </div>
+                                                <div class="medium-12 columns">
+                                                    <label>วันที่สิ้นสุด
+                                                        <input type="text" name="end_date" class="datepicker">
+                                                    </label>
+                                                </div>
+                                                
+                                            </div>
+                                            <!-- The fileinput-button span is used to style the file input field as button -->
+                                            <span class="button success fileinput-button">
+                                                <span>Select files...</span>
+                                            <!-- The file input field used as target for the file upload widget -->
+                                            <input id="fileupload" type="file" name="files[]" multiple>
+                                            </span>
+                                            <br>
+                                            <br>
+                                            <!-- The global progress bar -->
+                                            <div id="progress" class="success progress">
+                                                <div class="progress-meter"></div>
+                                            </div>
+                                            <!-- The container for the uploaded files -->
+                                            <div class="files">
+                                                <img id="img_tmp" src="" alt="">
+                                                <input id="files" type="hidden" name="filename" value="">
+                                            </div>
+                                            <div class="medium-5 columns">
+                                                    <input type='submit' class="button" value="Create">
+                                                </div>
+                                        </div>
                                     </div>
-                                    <div class="small-3 columns">
-                                        <select data-placeholder="Brand" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="United States">United States</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="Afghanistan">Afghanistan</option>
-                                            <option value="Aland Islands">Aland Islands</option>
-                                            <option value="Albania">Albania</option>
-                                            <option value="Algeria">Algeria</option>
-                                            <option value="American Samoa">American Samoa</option>
-                                            <option value="Andorra">Andorra</option>
-                                            <option value="Angola">Angola</option>
-                                            <option value="Anguilla">Anguilla</option>
-                                            <option value="Antarctica">Antarctica</option>
-                                            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                                            <option value="Argentina">Argentina</option>
-                                            <option value="Armenia">Armenia</option>
-                                            <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
-                                            <option value="Wallis and Futuna">Wallis and Futuna</option>
-                                            <option value="Western Sahara">Western Sahara</option>
-                                            <option value="Yemen">Yemen</option>
-                                            <option value="Zambia">Zambia</option>
-                                            <option value="Zimbabwe">Zimbabwe</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-3 columns">
-                                        <select data-placeholder="Price" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">0 - 5,000</option>
-                                            <option value="Western Sahara">5,001 - 10,000</option>
-                                            <option value="Yemen">10,001 - 50,000</option>
-                                            <option value="Zambia">50,001 - 100,000</option>
-                                            <option value="Zimbabwe">100,001 - 500,000</option>
-                                            <option value="Zimbabwe">500,000 ขึ้นไป</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Interested" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">แบรนที่สนใจคุณ</option>
-                                            <option value="Western Sahara">แคมเปญที่คุณสนใจ</option>
-                                            <option value="Yemen">เพื่อนร่วมงานที่สนใจคุณ</option>
-                                            <option value="Zambia">เพื่อนร่วมงานที่คุณสนใจ</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Channal" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">Facebook</option>
-                                            <option value="Western Sahara">Youtube</option>
-                                        </select>
-                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="small-12 columns c-holder c-interest">
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <select data-placeholder="Categories" class="chosen-select" tabindex="2">
+                                        <option value=""></option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Aland Islands">Aland Islands</option>
+                                        <option value="Albania">Albania</option>
+                                        <option value="Algeria">Algeria</option>
+                                        <option value="American Samoa">American Samoa</option>
+                                        <option value="Andorra">Andorra</option>
+                                        <option value="Angola">Angola</option>
+                                        <option value="Anguilla">Anguilla</option>
+                                    </select>
                                 </div>
-                                <div class="row">
-                                    <div class="small-12 masonry">
-                                        <?
+                                <div class="small-4 columns">
+                                    <select data-placeholder="Brand" class="chosen-select" tabindex="2">
+                                        <option value=""></option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Aland Islands">Aland Islands</option>
+                                        <option value="Albania">Albania</option>
+                                        <option value="Algeria">Algeria</option>
+                                        <option value="American Samoa">American Samoa</option>
+                                        <option value="Andorra">Andorra</option>
+                                        <option value="Uzbekistan">Uzbekistan</option>
+                                        <option value="Vanuatu">Vanuatu</option>
+                                        <option value="Venezuela, Bolivarian Republic of">Venezuela, Bolivarian Republic of</option>
+                                        <option value="Viet Nam">Viet Nam</option>
+                                        <option value="Virgin Islands, British">Virgin Islands, British</option>
+                                        <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                                        <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                        <option value="Western Sahara">Western Sahara</option>
+                                        <option value="Yemen">Yemen</option>
+                                        <option value="Zambia">Zambia</option>
+                                        <option value="Zimbabwe">Zimbabwe</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 masonry">
+                                    <?
                                           foreach ($campaign_list as $key => $value) {
                                             ?>
-                                            <div class="small-4 masonry-item columns anim zoomIn" style="visibility:hidden;">
-                                                <div class="row align-center">
-                                                    <div class="small-12 columns">
-                                                        <h3>1 Day 03 Hour</h3>
-                                                    </div>
-                                                    <div class="small-12 columns">
-                                                     <img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>">
-                                                    </div>
-                                                    <div class="small-12 columns">
-                                                      <label><?=$value->name?><br/>
-                                                      ประเภท :
-                                                      <?
+                                        <div class="small-4 masonry-item columns anim zoomIn" style="visibility:hidden;">
+                                            <div class="row align-center">
+                                                <div class="small-12 columns">
+                                                    <h3>1 Day 03 Hour</h3>
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    <img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>">
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    <label>
+                                                        <?=$value->name?>
+                                                            <br/> ประเภท :
+                                                            <?
                                                       foreach ($value->social as $key2 => $value2) {
                                                         echo $value2->social.",";
                                                       }
                                                       ?>
-                                                      <br/>
-                                                      <?=$value->budget_start?>-<?=$value->budget_end?><br/>
-                                                      <?=$ci->m_time->unix_to_datepicker($value->start_date)?>-<?=$ci->m_time->unix_to_datepicker($value->end_date)?></label>
-                                                    </div>
-                                                </div>
-                                                <div class="row align-center">
-                                                    <div class="small-3 columns">
-                                                        <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
-                                                    </div>
-                                                    <div class="small-6 columns">
-                                                        <a href="javascript:open_campaign_detail('<?=$value->id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
-                                                    </div>
-                                                    <div class="small-12 columns">
-                                                    <a class="button primary" data-open="propos-modal" href="javascript:propos_form('<?=$value->id?>','<?=$value->brand_id?>');">SEND PROPOSAL</a>
-                                                    </div>
+                                                                <br/>
+                                                                <?=$value->budget_start?>-
+                                                                    <?=$value->budget_end?>
+                                                                        <br/>
+                                                                        <?=$ci->m_time->unix_to_datepicker($value->start_date)?>-
+                                                                            <?=$ci->m_time->unix_to_datepicker($value->end_date)?>
+                                                    </label>
                                                 </div>
                                             </div>
-                                            <?
+                                            <div class="row align-center">
+                                                <div class="small-3 columns">
+                                                    <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
+                                                </div>
+                                                <div class="small-6 columns">
+                                                    <a href="javascript:open_campaign_detail('<?=$value->id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    <a class="button primary" data-open="propos-modal" href="javascript:propos_form('<?=$value->id?>','<?=$value->brand_id?>');">SEND PROPOSAL</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?
                                           }
                                           ?>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="small-12 columns c-holder c-interest">
-                                <div class="row">
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Categories" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="United States">United States</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="Afghanistan">Afghanistan</option>
-                                            <option value="Aland Islands">Aland Islands</option>
-                                            <option value="Albania">Albania</option>
-                                            <option value="Algeria">Algeria</option>
-                                            <option value="American Samoa">American Samoa</option>
-                                            <option value="Andorra">Andorra</option>
-                                            <option value="Angola">Angola</option>
-                                            <option value="Anguilla">Anguilla</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-3 columns">
-                                        <select data-placeholder="Brand" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="United States">United States</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="Afghanistan">Afghanistan</option>
-                                            <option value="Aland Islands">Aland Islands</option>
-                                            <option value="Albania">Albania</option>
-                                            <option value="Algeria">Algeria</option>
-                                            <option value="American Samoa">American Samoa</option>
-                                            <option value="Andorra">Andorra</option>
-                                            <option value="Uzbekistan">Uzbekistan</option>
-                                            <option value="Vanuatu">Vanuatu</option>
-                                            <option value="Venezuela, Bolivarian Republic of">Venezuela, Bolivarian Republic of</option>
-                                            <option value="Viet Nam">Viet Nam</option>
-                                            <option value="Virgin Islands, British">Virgin Islands, British</option>
-                                            <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
-                                            <option value="Wallis and Futuna">Wallis and Futuna</option>
-                                            <option value="Western Sahara">Western Sahara</option>
-                                            <option value="Yemen">Yemen</option>
-                                            <option value="Zambia">Zambia</option>
-                                            <option value="Zimbabwe">Zimbabwe</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-3 columns">
-                                        <select data-placeholder="Price" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">0 - 5,000</option>
-                                            <option value="Western Sahara">5,001 - 10,000</option>
-                                            <option value="Yemen">10,001 - 50,000</option>
-                                            <option value="Zambia">50,001 - 100,000</option>
-                                            <option value="Zimbabwe">100,001 - 500,000</option>
-                                            <option value="Zimbabwe">500,000 ขึ้นไป</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Interested" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">แบรนที่สนใจคุณ</option>
-                                            <option value="Western Sahara">แคมเปญที่คุณสนใจ</option>
-                                            <option value="Yemen">เพื่อนร่วมงานที่สนใจคุณ</option>
-                                            <option value="Zambia">เพื่อนร่วมงานที่คุณสนใจ</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Channal" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">Facebook</option>
-                                            <option value="Western Sahara">Youtube</option>
-                                        </select>
-                                    </div>
+                        </div>
+                        <div class="small-12 columns c-holder c-mycamp">
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <select data-placeholder="Categories" class="chosen-select" tabindex="2">
+                                        <option value=""></option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Aland Islands">Aland Islands</option>
+                                        <option value="Albania">Albania</option>
+                                        <option value="Algeria">Algeria</option>
+                                        <option value="American Samoa">American Samoa</option>
+                                        <option value="Andorra">Andorra</option>
+                                        <option value="Angola">Angola</option>
+                                        <option value="Anguilla">Anguilla</option>
+                                    </select>
                                 </div>
-                                <div class="row">
-                                    <ul class="tabs" data-tabs id="example-tabs">
-                                        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
-                                        <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
-                                    </ul>
-                                    <div class="tabs-content" data-tabs-content="example-tabs">
-                                        <div class="tabs-panel is-active" id="panel1">
-                                            <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
-                                        </div>
-                                        <div class="tabs-panel" id="panel2">
-                                            <p>Suspendisse dictum feugiat nisl ut dapibus. Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                                        </div>
-                                    </div>
+                                <div class="small-4 columns">
+                                    <select data-placeholder="Brand" class="chosen-select" tabindex="2">
+                                        <option value=""></option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Zambia">Zambia</option>
+                                        <option value="Zimbabwe">Zimbabwe</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="small-12 columns c-holder c-mycamp">
-                                <div class="row">
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Categories" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="United States">United States</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="Afghanistan">Afghanistan</option>
-                                            <option value="Aland Islands">Aland Islands</option>
-                                            <option value="Albania">Albania</option>
-                                            <option value="Algeria">Algeria</option>
-                                            <option value="American Samoa">American Samoa</option>
-                                            <option value="Andorra">Andorra</option>
-                                            <option value="Angola">Angola</option>
-                                            <option value="Anguilla">Anguilla</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-3 columns">
-                                        <select data-placeholder="Brand" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="United States">United States</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="Afghanistan">Afghanistan</option>
-                                            <option value="Aland Islands">Aland Islands</option>
-                                            <option value="Albania">Albania</option>
-                                            <option value="Algeria">Algeria</option>
-                                            <option value="American Samoa">American Samoa</option>
-                                            <option value="Andorra">Andorra</option>
-                                            <option value="Uzbekistan">Uzbekistan</option>
-                                            <option value="Vanuatu">Vanuatu</option>
-                                            <option value="Venezuela, Bolivarian Republic of">Venezuela, Bolivarian Republic of</option>
-                                            <option value="Viet Nam">Viet Nam</option>
-                                            <option value="Virgin Islands, British">Virgin Islands, British</option>
-                                            <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
-                                            <option value="Wallis and Futuna">Wallis and Futuna</option>
-                                            <option value="Western Sahara">Western Sahara</option>
-                                            <option value="Yemen">Yemen</option>
-                                            <option value="Zambia">Zambia</option>
-                                            <option value="Zimbabwe">Zimbabwe</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-3 columns">
-                                        <select data-placeholder="Price" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">0 - 5,000</option>
-                                            <option value="Western Sahara">5,001 - 10,000</option>
-                                            <option value="Yemen">10,001 - 50,000</option>
-                                            <option value="Zambia">50,001 - 100,000</option>
-                                            <option value="Zimbabwe">100,001 - 500,000</option>
-                                            <option value="Zimbabwe">500,000 ขึ้นไป</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Interested" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">แบรนที่สนใจคุณ</option>
-                                            <option value="Western Sahara">แคมเปญที่คุณสนใจ</option>
-                                            <option value="Yemen">เพื่อนร่วมงานที่สนใจคุณ</option>
-                                            <option value="Zambia">เพื่อนร่วมงานที่คุณสนใจ</option>
-                                        </select>
-                                    </div>
-                                    <div class="small-2 columns">
-                                        <select data-placeholder="Channal" class="chosen-select" tabindex="2">
-                                            <option value=""></option>
-                                            <option value="Wallis and Futuna">Facebook</option>
-                                            <option value="Western Sahara">Youtube</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <ul class="tabs" data-tabs id="example-tabs">
-                                        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
-                                        <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
-                                    </ul>
-                                    <div class="tabs-content" data-tabs-content="example-tabs">
-                                        <div class="tabs-panel is-active" id="panel1">
-                                            <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+                            <div class="row">
+                                <div class="small-12 masonry">
+                                    <?
+                                          foreach ($campaign_list as $key => $value) {
+                                            ?>
+                                        <div class="small-4 masonry-item columns anim zoomIn" style="visibility:hidden;">
+                                            <div class="row align-center">
+                                                <div class="small-12 columns">
+                                                    <h3>1 Day 03 Hour</h3>
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    <img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>">
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    <label>
+                                                        <?=$value->name?>
+                                                            <br/> ประเภท :
+                                                            <?
+                                                      foreach ($value->social as $key2 => $value2) {
+                                                        echo $value2->social.",";
+                                                      }
+                                                      ?>
+                                                                <br/>
+                                                                <?=$value->budget_start?>-
+                                                                    <?=$value->budget_end?>
+                                                                        <br/>
+                                                                        <?=$ci->m_time->unix_to_datepicker($value->start_date)?>-
+                                                                            <?=$ci->m_time->unix_to_datepicker($value->end_date)?>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row align-center">
+                                                <div class="small-3 columns">
+                                                    <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
+                                                </div>
+                                                <div class="small-6 columns">
+                                                    <a href="javascript:open_campaign_detail('<?=$value->id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    <a class="button primary" data-open="propos-modal" href="javascript:propos_form('<?=$value->id?>','<?=$value->brand_id?>');">SEND PROPOSAL</a>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="tabs-panel" id="panel2">
-                                            <p>Suspendisse dictum feugiat nisl ut dapibus. Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
-                                        </div>
-                                    </div>
+                                        <?
+                                          }
+                                          ?>
                                 </div>
                             </div>
                         </div>
@@ -313,26 +265,81 @@ $ci =&get_instance();
             </div>
         </div>
     </div>
-    <div class="reveal" id="detail-modal" data-reveal data-animation-in="rotateIn animated" >
-        <div class="camp-region">
-        </div>
-        <div class="row align-center">
-            <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">OK</a>
-        </div>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
+</div>
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="<?=site_url()?>/js/vendor/jquery.ui.widget.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="<?=site_url()?>/js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="<?=site_url()?>/js/jquery.fileupload.js"></script>
+<script type="text/javascript">
+function form_show(div_class) {
+    $(".step-form").fadeOut("fast", function() {
+        setTimeout(function() {
+            $("." + div_class).fadeIn();
+        }, 500);
+
+    });
+
+}
+$(function() {
+
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = '<?php echo upload_site_url('
+    upload / fileupload ');?>';
+    $('#fileupload').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function(e, data) {
+                //console.log(data);
+                $.each(data.result.files, function(index, file) {
+                    //console.log(file);
+                    if (file.error == "File is too big") {
+                        $("#img_tmp").attr('alt', 'File is too big');
+                        $("#img_id_card").attr('value', '');
+                    } else {
+                        $("#img_tmp").attr('src', '<?echo upload_site_url();?>media/temp/' + file.name);
+                        $("#img_id_card").val(file.name);
+                    }
+                });
+            },
+            progressall: function(e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-meter').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+</script>
+
+
+
+<div class="reveal" id="detail-modal" data-reveal data-animation-in="rotateIn animated">
+    <div class="camp-region">
     </div>
-    <div class="reveal" id="propos-modal" data-reveal data-animation-in="rotateIn animated" >
-        <div class="camp-region">
-        </div>
-        <div class="row align-center">
-            <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">CLOSE</a>
-        </div>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="row align-center">
+        <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">OK</a>
     </div>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="reveal" id="propos-modal" data-reveal data-animation-in="rotateIn animated">
+    <div class="camp-region">
+    </div>
+    <div class="row align-center">
+        <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">CLOSE</a>
+    </div>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
     <script type="text/javascript">
     function open_campaign_detail(camp_id) {
         $.ajax({
