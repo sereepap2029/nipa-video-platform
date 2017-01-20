@@ -22,6 +22,11 @@ class Campaign extends CI_Controller {
 		$this->load->view('ajax/campaign/v_creator_campaign_detail',$data);
 		
 	}
+	public function send_camp_form(){
+		$campaign_id=$_GET['camp_id'];
+		$data['campaign']=$this->m_campaign->get_campaign_by_id($campaign_id);
+		$this->load->view('ajax/campaign/v_propos_form',$data);
+	}
 	public function send_camp_propos()
 	{
 		header('Content-Type: application/json');

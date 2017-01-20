@@ -127,7 +127,7 @@ $ci =&get_instance();
                                                         <a href="javascript:open_campaign_detail('<?=$value->id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
                                                     </div>
                                                     <div class="small-12 columns">
-                                                    <a class="button primary" data-open="propos-modal" href="javascript:send_propos('<?=$value->id?>','<?=$value->brand_id?>');">SEND PROPOSAL</a>
+                                                    <a class="button primary" data-open="propos-modal" href="javascript:propos_form('<?=$value->id?>','<?=$value->brand_id?>');">SEND PROPOSAL</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -206,7 +206,20 @@ $ci =&get_instance();
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row"></div>
+                                <div class="row">
+                                    <ul class="tabs" data-tabs id="example-tabs">
+                                        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
+                                        <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
+                                    </ul>
+                                    <div class="tabs-content" data-tabs-content="example-tabs">
+                                        <div class="tabs-panel is-active" id="panel1">
+                                            <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+                                        </div>
+                                        <div class="tabs-panel" id="panel2">
+                                            <p>Suspendisse dictum feugiat nisl ut dapibus. Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -245,6 +258,16 @@ $ci =&get_instance();
                     $("#detail-modal .camp-region").html(data);
             });
 
+    }
+    function propos_form(camp_id,brand_id) {
+        $.ajax({
+                method: "get",
+                url: "<?php echo site_url("ajax/campaign/send_camp_form"); ?>",
+                data: "camp_id=" + camp_id+"&creator_id=<?=$profile->id?>&brand_id="+brand_id+"&creator_type=influencer"
+            })
+            .done(function(data) {
+                    $("#propos-modal .camp-region").html(data);
+            });
     }
     function send_propos(camp_id,brand_id) {
         $.ajax({
@@ -313,6 +336,15 @@ $ci =&get_instance();
 
     function c_show(div_class) {
         $(".c-holder").fadeOut("fast", function() {
+            setTimeout(function() {
+                $("." + div_class).fadeIn();
+            }, 500);
+
+        });
+
+    }
+    function form_show(div_class) {
+        $(".step-form").fadeOut("fast", function() {
             setTimeout(function() {
                 $("." + div_class).fadeIn();
             }, 500);
