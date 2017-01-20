@@ -39,7 +39,7 @@ $ci =&get_instance();
                     <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
                 </div>
                 <div class="small-6 columns">
-                    <a class="button primary" data-open="propos-modal" href="javascript:;">SEND PROPOSAL</a>
+                    <a class="button primary" data-open="propos-modal" href="javascript:send_propos('<?=$campaign->id?>','<?=$campaign->brand_id?>');">SEND PROPOSAL</a>
                 </div>
             </div>
         </div>

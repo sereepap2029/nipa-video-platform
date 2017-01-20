@@ -154,6 +154,19 @@ class M_campaign extends CI_Model
         }
         return $g_list2;
     }
+    function get_campaign_has_creator_by_creator_id_and_campaign_id($creator_id,$campaign_id) { 
+        $g_list = array();
+        $g_list2 = new stdClass();
+        $this->db->where('creator_id', $creator_id);
+        $this->db->where('campaign_id', $campaign_id);
+        $query = $this->db->get('campaign_has_creator');
+        
+        if ($query->num_rows() > 0) {
+            $g_list = $query->result();
+                $g_list2=$g_list[0];
+        }
+        return $g_list2;
+    }
     function get_all_campaign_has_social() {//no use
         $g_list = array();
         $query = $this->db->get('campaign_has_social');

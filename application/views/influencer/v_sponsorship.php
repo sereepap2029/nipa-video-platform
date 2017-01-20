@@ -127,7 +127,7 @@ $ci =&get_instance();
                                                         <a href="javascript:open_campaign_detail('<?=$value->id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
                                                     </div>
                                                     <div class="small-12 columns">
-                                                    <a class="button primary" data-open="propos-modal" href="javascript:;">SEND PROPOSAL</a>
+                                                    <a class="button primary" data-open="propos-modal" href="javascript:send_propos('<?=$value->id?>','<?=$value->brand_id?>');">SEND PROPOSAL</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -225,6 +225,8 @@ $ci =&get_instance();
         </button>
     </div>
     <div class="reveal" id="propos-modal" data-reveal data-animation-in="rotateIn animated" >
+        <div class="camp-region">
+        </div>
         <div class="row align-center">
             <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">OK</a>
         </div>
@@ -241,6 +243,17 @@ $ci =&get_instance();
             })
             .done(function(data) {
                     $("#detail-modal .camp-region").html(data);
+            });
+
+    }
+    function send_propos(camp_id,brand_id) {
+        $.ajax({
+                method: "post",
+                url: "<?php echo site_url("ajax/campaign/send_camp_propos"); ?>",
+                data: "camp_id=" + camp_id+"&creator_id=<?=$profile->id?>&brand_id="+brand_id+"&creator_type=influencer"
+            })
+            .done(function(data) {
+                    $("#propos-modal .camp-region").html(data["data"]);
             });
 
     }
