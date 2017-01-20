@@ -13,9 +13,11 @@ $ci =&get_instance();
                     <div class="callout">
                         <div class="row align-center">
                             <div class="small-12 columns">
-                                <a class="button primary" href="javascript:c_show('c-campaign')">Campaign</a>
+                                <a class="button primary" href="javascript:c_show('c-campaign')">สร้าง Campaign</a>
                                 <br>
-                                <a class="button primary" href="javascript:c_show('c-interest')">Interested</a>
+                                <a class="button primary" href="javascript:c_show('c-interest')">ได้รับคำเชิญ</a>
+                                <br>
+                                <a class="button primary" href="javascript:c_show('c-mycamp')">แคมเปญของฉัน</a>
                             </div>
                         </div>
                     </div>
@@ -138,6 +140,90 @@ $ci =&get_instance();
                                 </div>
                             </div>
                             <div class="small-12 columns c-holder c-interest">
+                                <div class="row">
+                                    <div class="small-2 columns">
+                                        <select data-placeholder="Categories" class="chosen-select" tabindex="2">
+                                            <option value=""></option>
+                                            <option value="United States">United States</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="Afghanistan">Afghanistan</option>
+                                            <option value="Aland Islands">Aland Islands</option>
+                                            <option value="Albania">Albania</option>
+                                            <option value="Algeria">Algeria</option>
+                                            <option value="American Samoa">American Samoa</option>
+                                            <option value="Andorra">Andorra</option>
+                                            <option value="Angola">Angola</option>
+                                            <option value="Anguilla">Anguilla</option>
+                                        </select>
+                                    </div>
+                                    <div class="small-3 columns">
+                                        <select data-placeholder="Brand" class="chosen-select" tabindex="2">
+                                            <option value=""></option>
+                                            <option value="United States">United States</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="Afghanistan">Afghanistan</option>
+                                            <option value="Aland Islands">Aland Islands</option>
+                                            <option value="Albania">Albania</option>
+                                            <option value="Algeria">Algeria</option>
+                                            <option value="American Samoa">American Samoa</option>
+                                            <option value="Andorra">Andorra</option>
+                                            <option value="Uzbekistan">Uzbekistan</option>
+                                            <option value="Vanuatu">Vanuatu</option>
+                                            <option value="Venezuela, Bolivarian Republic of">Venezuela, Bolivarian Republic of</option>
+                                            <option value="Viet Nam">Viet Nam</option>
+                                            <option value="Virgin Islands, British">Virgin Islands, British</option>
+                                            <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
+                                            <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                            <option value="Western Sahara">Western Sahara</option>
+                                            <option value="Yemen">Yemen</option>
+                                            <option value="Zambia">Zambia</option>
+                                            <option value="Zimbabwe">Zimbabwe</option>
+                                        </select>
+                                    </div>
+                                    <div class="small-3 columns">
+                                        <select data-placeholder="Price" class="chosen-select" tabindex="2">
+                                            <option value=""></option>
+                                            <option value="Wallis and Futuna">0 - 5,000</option>
+                                            <option value="Western Sahara">5,001 - 10,000</option>
+                                            <option value="Yemen">10,001 - 50,000</option>
+                                            <option value="Zambia">50,001 - 100,000</option>
+                                            <option value="Zimbabwe">100,001 - 500,000</option>
+                                            <option value="Zimbabwe">500,000 ขึ้นไป</option>
+                                        </select>
+                                    </div>
+                                    <div class="small-2 columns">
+                                        <select data-placeholder="Interested" class="chosen-select" tabindex="2">
+                                            <option value=""></option>
+                                            <option value="Wallis and Futuna">แบรนที่สนใจคุณ</option>
+                                            <option value="Western Sahara">แคมเปญที่คุณสนใจ</option>
+                                            <option value="Yemen">เพื่อนร่วมงานที่สนใจคุณ</option>
+                                            <option value="Zambia">เพื่อนร่วมงานที่คุณสนใจ</option>
+                                        </select>
+                                    </div>
+                                    <div class="small-2 columns">
+                                        <select data-placeholder="Channal" class="chosen-select" tabindex="2">
+                                            <option value=""></option>
+                                            <option value="Wallis and Futuna">Facebook</option>
+                                            <option value="Western Sahara">Youtube</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <ul class="tabs" data-tabs id="example-tabs">
+                                        <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Tab 1</a></li>
+                                        <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
+                                    </ul>
+                                    <div class="tabs-content" data-tabs-content="example-tabs">
+                                        <div class="tabs-panel is-active" id="panel1">
+                                            <p>Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus.</p>
+                                        </div>
+                                        <div class="tabs-panel" id="panel2">
+                                            <p>Suspendisse dictum feugiat nisl ut dapibus. Vivamus hendrerit arcu sed erat molestie vehicula. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="small-12 columns c-holder c-mycamp">
                                 <div class="row">
                                     <div class="small-2 columns">
                                         <select data-placeholder="Categories" class="chosen-select" tabindex="2">

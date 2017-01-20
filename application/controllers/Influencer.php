@@ -66,4 +66,16 @@ class Influencer extends CI_Controller {
         $this->load->view('influencer/v_sponsorship',$data);
         $this->load->view('influencer/v_footer');
     }
+    public function partnership()
+    {
+        $this->require_auth();
+        $data['profile']=$this->m_influencer->get_influencer_by_id($this->m_session_cache->get('influencer_id'));
+        $data['campaign_list']=$this->m_campaign->get_all_campaign("all","active");
+        shuffle($data['campaign_list']);
+        $this->load->view('influencer/v_meta');
+        $this->load->view('influencer/v_header');
+        $this->load->view('influencer/v_header_button');
+        $this->load->view('influencer/v_partnership',$data);
+        $this->load->view('influencer/v_footer');
+    }
 }
