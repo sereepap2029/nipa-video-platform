@@ -1,9 +1,9 @@
 <?
 $ci =&get_instance();
 ?>
- <style type="text/css">
+<style type="text/css">
 .c-holder {
-    display: none;
+    visibility: : hidden;
 }
 </style>
 <div class="row creator-list">
@@ -25,7 +25,7 @@ $ci =&get_instance();
             <div class="small-10 columns">
                 <div class="callout">
                     <div class="row">
-                        <div class="small-12 columns c-holder c-campaign" style="display: block;">
+                        <div class="small-12 columns c-holder c-campaign" style="visibility:visible;">
                             <div class="row">
                                 <h5>Create Campaign</h5>
                                 <form method="post" action="<?=site_url('brand/campaign_create')?>">
@@ -40,10 +40,11 @@ $ci =&get_instance();
                                                 </div>
                                                 <fieldset class="large-6 columns">
                                                     <legend>ความเป็นส่วนตัว</legend>
-                                                    <input type="radio" name="pokemon" value="private" id="pokemonRed" required><label for="pokemonRed">ส่วนตัว</label>
-                                                    <input type="radio" name="pokemon" value="public" id="pokemonBlue"><label for="pokemonBlue">สาธารณะ</label>
-                                                    
-                                                  </fieldset>
+                                                    <input type="radio" name="pokemon" value="private" id="pokemonRed" required>
+                                                    <label for="pokemonRed">ส่วนตัว</label>
+                                                    <input type="radio" name="pokemon" value="public" id="pokemonBlue">
+                                                    <label for="pokemonBlue">สาธารณะ</label>
+                                                </fieldset>
                                                 <div class="medium-12 columns">
                                                     <label>ช่วงบัดเจต
                                                         <input name="budget_start" type="text" placeholder="budget-start">-
@@ -65,7 +66,6 @@ $ci =&get_instance();
                                                         <input type="text" name="end_date" class="datepicker">
                                                     </label>
                                                 </div>
-                                                
                                             </div>
                                             <!-- The fileinput-button span is used to style the file input field as button -->
                                             <span class="button success fileinput-button">
@@ -85,8 +85,8 @@ $ci =&get_instance();
                                                 <input id="files" type="hidden" name="filename" value="">
                                             </div>
                                             <div class="medium-5 columns">
-                                                    <input type='submit' class="button" value="Create">
-                                                </div>
+                                                <input type='submit' class="button" value="Create">
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -266,6 +266,7 @@ $ci =&get_instance();
         </div>
     </div>
 </div>
+
 
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="<?=site_url()?>/js/vendor/jquery.ui.widget.js"></script>

@@ -3,7 +3,7 @@ $ci =&get_instance();
 ?>
     <style type="text/css">
     .c-holder {
-        display: none;
+        visibility: : hidden;
     }
     </style>
     <div class="row creator-list">
@@ -23,7 +23,7 @@ $ci =&get_instance();
                 <div class="small-10 columns">
                     <div class="callout">
                         <div class="row">
-                            <div class="small-12 columns c-holder c-campaign" style="display: block;">
+                            <div class="small-12 columns c-holder c-campaign" style="visibility: visible;">
                                 <div class="row">
                                     <div class="small-2 columns">
                                         <select data-placeholder="Categories" class="chosen-select" tabindex="2">
