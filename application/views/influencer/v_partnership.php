@@ -3,7 +3,7 @@ $ci =&get_instance();
 ?>
 <style type="text/css">
 .c-holder {
-    visibility: : hidden;
+    visibility: hidden;
 }
 </style>
 <div class="row creator-list">
@@ -65,6 +65,9 @@ $ci =&get_instance();
                                                     <label>วันที่สิ้นสุด
                                                         <input type="text" name="end_date" class="datepicker">
                                                     </label>
+                                                </div>
+                                                <div class="medium-12 columns">
+                                                    <a class="button success" href="#">เชิญ creator</a>
                                                 </div>
                                             </div>
                                             <!-- The fileinput-button span is used to style the file input field as button -->
@@ -288,8 +291,7 @@ $(function() {
 
     'use strict';
     // Change this to the location of your server-side upload handler:
-    var url = '<?php echo upload_site_url('
-    upload / fileupload ');?>';
+    var url = '<?php echo upload_site_url('upload/fileupload');?>';
     $('#fileupload').fileupload({
             url: url,
             dataType: 'json',
@@ -389,7 +391,7 @@ $(function() {
     }
 
     function animate_camp() {
-        $(".anim").css("visibility", "visible");
+        //$(".anim").css("visibility", "visible");
         $(".anim").addClass("animated");
     }
     $(function() {
@@ -431,7 +433,9 @@ $(function() {
     function c_show(div_class) {
         $(".c-holder").fadeOut("fast", function() {
             setTimeout(function() {
+                $(".anim").css("visibility", "visible");
                 $("." + div_class).fadeIn();
+                $("." + div_class).css("visibility", "visible");
             }, 500);
 
         });
