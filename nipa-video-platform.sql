@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 13, 2017 at 01:13 PM
+-- Generation Time: Jan 26, 2017 at 12:08 PM
 -- Server version: 5.7.16-0ubuntu0.16.04.1
 -- PHP Version: 7.0.8-0ubuntu0.16.04.3
 
@@ -65,12 +65,47 @@ CREATE TABLE `campaign` (
 --
 
 INSERT INTO `campaign` (`id`, `name`, `budget_start`, `budget_end`, `url`, `start_date`, `end_date`, `description`, `picture`, `status`, `brand_id`) VALUES
-('1d217a349e', 'Review Atom', 1000, 10000, 'dasljdlkasd', 1483635601, 1485795601, 'test', '1d217a349e_profile.jpg', 'active', '8be89e30b8'),
-('5d169a6978', 'tweqwwe', 6000, 70000, '123asdas', 1483376401, 1485795601, 'asdasd', '5d169a6978_profile.jpg', 'active', '8be89e30b8'),
-('7394f6ce64', 'dasd', 2333, 222222, '21312', 1483462801, 1485795601, 'asdasd', '7394f6ce64_profile.jpg', 'active', '8be89e30b8'),
-('79702eabca', 'atom', 32123, 3213, 'ssdasewq', 1482253201, 1483117201, 'asdaewq', '79702eabca_profile.jpg', 'active', '8be89e30b8'),
-('82e5a79741', '2312321', 1000, 2000000, 'wqeq', 1483549201, 1485795601, 'dasd', '82e5a79741_profile.png', 'active', '8be89e30b8'),
-('c4cec37c5c', 'rewqe', 2000, 339999, 'dasd', 1483462801, 1485795601, 'szdas', 'c4cec37c5c_profile.jpg', 'active', '8be89e30b8');
+('1d217a349e', 'Review Atom', 1000, 10000, 'dasljdlkasd', 1483635601, 1485795601, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '1d217a349e_profile.jpg', 'active', '8be89e30b8'),
+('5d169a6978', 'tweqwwe', 6000, 70000, '123asdas', 1483376401, 1485795601, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '5d169a6978_profile.jpg', 'active', '8be89e30b8'),
+('7394f6ce64', 'dasd', 2333, 222222, '21312', 1483462801, 1485795601, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '7394f6ce64_profile.jpg', 'active', '8be89e30b8'),
+('79702eabca', 'atom', 32123, 3213, 'ssdasewq', 1482253201, 1483117201, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '79702eabca_profile.jpg', 'active', '8be89e30b8'),
+('82e5a79741', '2312321', 1000, 2000000, 'wqeq', 1483549201, 1485795601, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', '82e5a79741_profile.png', 'active', '8be89e30b8'),
+('c4cec37c5c', 'rewqe', 2000, 339999, 'dasd', 1483462801, 1485795601, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 'c4cec37c5c_profile.jpg', 'active', '8be89e30b8');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `campaign_creator`
+--
+
+CREATE TABLE `campaign_creator` (
+  `id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `name` text COLLATE utf8_unicode_ci NOT NULL,
+  `budget_start` bigint(11) NOT NULL,
+  `budget_end` bigint(11) NOT NULL,
+  `start_date` bigint(11) NOT NULL,
+  `end_date` bigint(11) NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `picture` text COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('active','proposing','WIP','complete','cancel') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
+  `creator_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `privacy` enum('private','public') COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `campaign_creator_has_creator`
+--
+
+CREATE TABLE `campaign_creator_has_creator` (
+  `id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `creator_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `creator_type` enum('producer','influencer') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'producer',
+  `campaign_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `invite_type` enum('invite','submit') COLLATE utf8_unicode_ci NOT NULL,
+  `create_by` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -92,8 +127,10 @@ CREATE TABLE `campaign_has_creator` (
 --
 
 INSERT INTO `campaign_has_creator` (`id`, `creator_id`, `creator_type`, `campaign_id`, `invite_type`, `brand_id`) VALUES
-('1c600c4e9d', 'ed52a23669', 'influencer', '79702eabca', 'invite', '8be89e30b8'),
-('75a0cb2d21', 'ed52a23669', 'influencer', '1d217a349e', 'invite', '8be89e30b8');
+('3598e7d87f', 'ed52a23669', 'influencer', 'c4cec37c5c', 'submit', '8be89e30b8'),
+('8b23251070', 'ed52a23669', 'influencer', '79702eabca', 'submit', '8be89e30b8'),
+('9d308bf675', 'ed52a23669', 'influencer', '82e5a79741', 'submit', '8be89e30b8'),
+('d6e0251b6f', 'ed52a23669', 'influencer', '7394f6ce64', 'submit', '8be89e30b8');
 
 -- --------------------------------------------------------
 
@@ -253,7 +290,43 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 ('23agm66n8o5apku4lf7s7vmuo34ictm1', '127.0.0.1', 1484286531, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343238363533313b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
 ('gumdf9vqa6oj802ff0h233k53pocj1n0', '127.0.0.1', 1484286855, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343238363835353b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
 ('b40mikkhadq5eftliq6h24oijjrapd56', '127.0.0.1', 1484287241, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343238373234313b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
-('e7es0eki4fgkamtnra0fm47cbnjfgh1v', '127.0.0.1', 1484287253, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343238373234313b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b);
+('e7es0eki4fgkamtnra0fm47cbnjfgh1v', '127.0.0.1', 1484288254, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343238383235343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('bqgfv1cdiei78idnc0akl7mm2ijgdunr', '127.0.0.1', 1484294090, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343239343039303b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('0g55s2tno5mhjbku6osc8506silov7d4', '127.0.0.1', 1484296269, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343239363236393b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('ip4pe956itk48ho6sg8nsd1upeq3dqhm', '127.0.0.1', 1484297401, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343239373430313b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('nog1sc01oj9vjstundbjn5edsgj02npp', '127.0.0.1', 1484297737, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343239373733373b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('qsbiue8g23rubbfp5d5cn3md2f1fpqfu', '127.0.0.1', 1484298053, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343239383035333b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('67jremou0jh9bb8op7480fh73fqkd444', '127.0.0.1', 1484298414, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343239383431343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('apfpcc28r8tgerrlnjhvkpjvotp1ebji', '127.0.0.1', 1484301525, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343330313532353b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('7ft9sg9c2oonkmif5s3g8i2vfkcfnmm1', '127.0.0.1', 1484301985, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343330313938353b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('amu3oa32bmuc78815r5bnrk6q182e99s', '127.0.0.1', 1484302287, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343330323238373b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('asl60bi92an5djva2ofivos7fa3qcl1k', '127.0.0.1', 1484302774, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343330323737343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('572eas1499eog8bemv9mgjdphulelhss', '127.0.0.1', 1484304532, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343330343533323b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('h02tbvga3g2ime7v52an5rmv55fqkqe7', '127.0.0.1', 1484304934, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343330343933343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('bdb5m47tccskk41m4n1rsjf28eain9hi', '127.0.0.1', 1484304982, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343330343933343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('nsdmc2pc4ue26ghraljivijkvhqgk0d0', '127.0.0.1', 1484878527, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343837383532373b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b),
+('len8m714tif8ggpv57e2iln62019cpl3', '127.0.0.1', 1484877402, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343837373430323b),
+('a1tk2g43ag1lgpb5e46sfn8mv0csajur', '127.0.0.1', 1484878927, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343837383932373b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b),
+('5tblv4ptav045oornt8tnt48jda2cjep', '127.0.0.1', 1484879554, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343837393535343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('b888j1bj2gt181fsmet3le4og2abm71e', '127.0.0.1', 1484879884, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343837393838343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('ep93jlbd5lg0m1qqcm8jhd0h89het6si', '127.0.0.1', 1484880264, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343838303236343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('d9pn877g5in2q3ak0lhdhd3bqrr90dve', '127.0.0.1', 1484880851, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343838303835313b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('mmt5qmm444fgurtq1n82kabvc5k1k6q5', '127.0.0.1', 1484881327, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343838313332373b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('kjj8m8e1h46cabu2rutcel0c4fckmalo', '127.0.0.1', 1484888118, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343838383131383b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('g8jm7vsaoujg2pljnvfoh47nv8lp79el', '127.0.0.1', 1484890469, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343839303436393b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('9hhkqnc4ioafhhnnqplu4vhgu1rakg8f', '127.0.0.1', 1484890805, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343839303830353b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('73uera8beu8iaoe92cd49k47t4vn1fij', '127.0.0.1', 1484891686, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343839313638363b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('i674p04han97e3on7l08q4imv74a9l03', '127.0.0.1', 1484894388, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343839343338383b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('d71qevf76fqvrnep7n1qc0ijqa1gu44b', '127.0.0.1', 1484894710, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343839343731303b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('lsf4isg362o2s1fvio5u60tabmjpgr1l', '127.0.0.1', 1484897673, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343839373637333b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('6u9thq7ji4fbds1d47qctkam1se3u5fb', '127.0.0.1', 1484899934, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343839393933343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('fgnec8jgir5rlo63ocq8iqh1jbc4obml', '127.0.0.1', 1484899941, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343839393933343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b6272616e645f69647c733a31303a2238626538396533306238223b),
+('hgnk9n218t3rsspdkl646nu133gvlvgh', '127.0.0.1', 1484910467, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438343931303436353b),
+('l6bj5fupck3nb1kilo2svu2pvcgd6kgj', '127.0.0.1', 1485397818, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438353339373831383b),
+('6pfgdgh25t9453btooamhvoq791vau83', '127.0.0.1', 1485393902, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438353339333930313b),
+('q42fnd5fh37i9v156j7k4aljtvrnjpte', '127.0.0.1', 1485398135, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438353339383133353b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b),
+('sg36b5qv97aru40hib7gurp6me119m1n', '127.0.0.1', 1485398444, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438353339383434343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b),
+('kba10t9eh34tl977vds7rcdl5disfu31', '127.0.0.1', 1485398505, 0x5f5f63695f6c6173745f726567656e65726174657c693a313438353339383434343b696e666c75656e6365725f69647c733a31303a2265643532613233363639223b);
 
 -- --------------------------------------------------------
 
@@ -320,6 +393,18 @@ ALTER TABLE `brand`
 -- Indexes for table `campaign`
 --
 ALTER TABLE `campaign`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `campaign_creator`
+--
+ALTER TABLE `campaign_creator`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `campaign_creator_has_creator`
+--
+ALTER TABLE `campaign_creator_has_creator`
   ADD PRIMARY KEY (`id`);
 
 --
