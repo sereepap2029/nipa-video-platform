@@ -28,7 +28,7 @@ $ci =&get_instance();
                         <div class="small-12 columns c-holder c-campaign" style="visibility:visible;">
                             <div class="row">
                                 <h5>Create Campaign</h5>
-                                <form method="post" action="<?=site_url('brand/campaign_create')?>">
+                                <form method="post" action="<?=site_url('influencer/campaign_create')?>">
                                     <h5 style="color:red"><?if($this->session->userdata('create_error')){echo $this->session->userdata('create_error');$this->session->unset_userdata('create_error');}?></h5>
                                     <div class="row">
                                         <div class="large-9 columns">
@@ -40,9 +40,9 @@ $ci =&get_instance();
                                                 </div>
                                                 <fieldset class="large-6 columns">
                                                     <legend>ความเป็นส่วนตัว</legend>
-                                                    <input type="radio" name="pokemon" value="private" id="pokemonRed" required>
+                                                    <input type="radio" name="privacy" value="private" id="pokemonRed" required>
                                                     <label for="pokemonRed">ส่วนตัว</label>
-                                                    <input type="radio" name="pokemon" value="public" id="pokemonBlue">
+                                                    <input type="radio" name="privacy" value="public" id="pokemonBlue" checked>
                                                     <label for="pokemonBlue">สาธารณะ</label>
                                                 </fieldset>
                                                 <div class="medium-12 columns">
@@ -301,10 +301,10 @@ $(function() {
                     //console.log(file);
                     if (file.error == "File is too big") {
                         $("#img_tmp").attr('alt', 'File is too big');
-                        $("#img_id_card").attr('value', '');
+                        $("#files").attr('value', '');
                     } else {
                         $("#img_tmp").attr('src', '<?echo upload_site_url();?>media/temp/' + file.name);
-                        $("#img_id_card").val(file.name);
+                        $("#files").val(file.name);
                     }
                 });
             },
@@ -395,7 +395,11 @@ $(function() {
         $(".anim").addClass("animated");
     }
     $(function() {
-
+        $( ".datepicker" ).datepicker({
+              changeMonth: true,
+              changeYear: true,
+              dateFormat: "dd/mm/yy"
+          });
 
         var $grid = $('.masonry').masonry({
             // options
