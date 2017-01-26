@@ -5,6 +5,15 @@ $ci =&get_instance();
 .c-holder {
     visibility: hidden;
 }
+.delete_creator{
+    position: absolute;
+    right: -1px;
+    top: -1px;
+}
+.partner-items{
+    position: relative;
+    height: 50px;
+}
 </style>
 <div class="row creator-list">
     <div class="large-12 columns">
@@ -25,7 +34,7 @@ $ci =&get_instance();
             <div class="small-10 columns">
                 <div class="callout">
                     <div class="row">
-                        <div class="small-12 columns c-holder c-campaign" style="visibility:visible;">
+                        <div class="small-12 columns c-holder c-campaign" >
                             <div class="row">
                                 <h5>Create Campaign</h5>
                                 <form method="post" action="<?=site_url('influencer/campaign_create')?>">
@@ -67,7 +76,10 @@ $ci =&get_instance();
                                                     </label>
                                                 </div>
                                                 <div class="medium-12 columns">
-                                                    <a class="button success" href="#">เชิญ creator</a>
+                                                    <a class="button success" data-open="invite-modal" href="javascript:show_partner();">เชิญ creator</a>
+                                                    <div class="row" id="partner_invite">
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                             <!-- The fileinput-button span is used to style the file input field as button -->
@@ -320,9 +332,7 @@ $(function() {
 });
 </script>
 
-
-
-<div class="reveal" id="detail-modal" data-reveal data-animation-in="rotateIn animated">
+<div class="reveal" id="invite-modal" data-reveal data-animation-in="rotateIn animated">
     <div class="camp-region">
     </div>
     <div class="row align-center">
@@ -332,37 +342,27 @@ $(function() {
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="reveal" id="propos-modal" data-reveal data-animation-in="rotateIn animated">
-    <div class="camp-region">
-    </div>
-    <div class="row align-center">
-        <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">CLOSE</a>
-    </div>
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
 
     <script type="text/javascript">
-    function open_campaign_detail(camp_id) {
+    function show_partner() {
         $.ajax({
                 method: "get",
-                url: "<?php echo site_url("ajax/campaign/get_camp_detail"); ?>",
-                data: "camp_id=" + camp_id
+                url: "<?php echo site_url("influencer/show_partner"); ?>",
+                data: "camp_id="
             })
             .done(function(data) {
-                    $("#detail-modal .camp-region").html(data);
+                    $("#invite-modal .camp-region").html(data);
             });
 
     }
-    function propos_form(camp_id,brand_id) {
+    function add_partner(partner_id) {
         $.ajax({
                 method: "get",
-                url: "<?php echo site_url("ajax/campaign/send_camp_form"); ?>",
-                data: "camp_id=" + camp_id+"&creator_id=<?=$profile->id?>&brand_id="+brand_id+"&creator_type=influencer"
+                url: "<?php echo site_url("influencer/add_partner"); ?>",
+                data: "partner_id=" + partner_id
             })
             .done(function(data) {
-                    $("#propos-modal .camp-region").html(data);
+                    $("#partner_invite").append(data);
             });
     }
     function send_propos(camp_id,brand_id) {
@@ -431,6 +431,9 @@ $(function() {
         for (var selector in chosen_config) {
             $(selector).chosen(chosen_config[selector]);
         }
+        setTimeout(function() {
+                c_show('c-mycamp');
+            }, 50);
 
     });
 

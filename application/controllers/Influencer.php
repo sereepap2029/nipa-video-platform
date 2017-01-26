@@ -95,6 +95,7 @@ class Influencer extends CI_Controller {
                     'privacy' => $_POST['privacy'],
                     'creator_id' => $this->user_data->id,
                 );
+            print_r($_POST);
             $result=$this->m_creator_campaign->add_campaign_file($_POST['filename'],$campaign_id,$campaign_id."_profile",'profile');
             if ($result === FALSE) { 
                 echo "false send post";
@@ -105,6 +106,23 @@ class Influencer extends CI_Controller {
                 $return_data=json_decode($result);
                 $ins_data['picture']=$return_data->new_filename;
                 $this->m_creator_campaign->add_campaign($ins_data);
+                if (isset($_POST['partner'])) {
+                    
+                    foreach ($_POST['partner'] as $key => $value) {
+                        $partner_id=$this->m_creator_campaign->generate_campaign_has_creator_id();
+                        $partner_dat = array(
+                            'id' => $partner_id,
+                            'creator_type' => "influencer",
+                            'creator_id' => $value,
+                            'campaign_id' => $campaign_id,
+                            'invite_type' => "invite",
+                            'create_by' => $this->user_data->id, 
+                            'response' => "pending",
+                            );
+                        $this->m_creator_campaign->add_campaign_has_creator($partner_dat);
+                    }
+                }
+                
                 //redirect("influencer/partnership");
             }
 
@@ -113,5 +131,20 @@ class Influencer extends CI_Controller {
         }else{
             // something
         }
+    }
+
+
+    // AJAX region
+    public function show_partner()
+    {
+        $this->require_auth();
+        $data['partner_list']=$this->m_influencer->get_all_influencer();
+        $this->load->view('ajax/influencer/v_partner_list',$data);
+    }
+    public function add_partner()
+    {
+        $this->require_auth();
+        $data['partner']=$this->m_influencer->get_influencer_by_id($_GET['partner_id']);
+        $this->load->view('ajax/influencer/v_add_partner_element',$data);
     }
 }
