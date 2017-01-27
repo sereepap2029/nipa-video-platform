@@ -236,11 +236,24 @@ class Influencer extends CI_Controller {
         $data['profile']=$this->m_influencer->get_influencer_by_id($this->m_session_cache->get('influencer_id'));
         $data['my_campaign']=$this->m_creator_campaign->get_all_campaign($this->m_session_cache->get('influencer_id'));
         $data['campaign_list']=$this->m_creator_campaign->get_all_invite_campaign($this->m_session_cache->get('influencer_id'),"active");
-        shuffle($data['campaign_list']);
+        
         $this->load->view('influencer/v_meta');
         $this->load->view('influencer/v_header');
         $this->load->view('influencer/v_header_button');
         $this->load->view('influencer/v_myjob',$data);
+        $this->load->view('influencer/v_footer');
+    }
+    public function reward()
+    {
+        $this->require_auth();
+        $data['profile']=$this->m_influencer->get_influencer_by_id($this->m_session_cache->get('influencer_id'));
+        $data['my_campaign']=$this->m_creator_campaign->get_all_campaign($this->m_session_cache->get('influencer_id'));
+        $data['campaign_list']=$this->m_creator_campaign->get_all_invite_campaign($this->m_session_cache->get('influencer_id'),"active");
+        
+        $this->load->view('influencer/v_meta');
+        $this->load->view('influencer/v_header');
+        $this->load->view('influencer/v_header_button');
+        $this->load->view('influencer/v_reward',$data);
         $this->load->view('influencer/v_footer');
     }
 
