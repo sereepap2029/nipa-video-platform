@@ -54,7 +54,7 @@ class Fileupload extends CI_Controller
             $new_filename = $_POST['new_filename']. "." . $new_ext;
             $file = './media/temp/' . $filename;
             $newfile = './media/campaign_creator/'.$_POST['campaign_folder']."/" . $new_filename;
-            
+            @unlink($newfile);
             if (!copy($file, $newfile)) {
                 $json['flag']="failed to copy $file...\n" . $file . " to " . $newfile . "  and  ";
                 

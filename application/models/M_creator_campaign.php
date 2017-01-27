@@ -38,13 +38,12 @@ class M_creator_campaign extends CI_Model
         return $clam_id;
     }
     function delete_campaign($id) { //no use
-        $this->delete_campaign_has_social_by_campaign_id($id);
+        $this->delete_campaign_has_creator_by_campaign_id($id);
         $this->db->where('id', $id);
         $this->db->delete('campaign_creator');
     }
-    function delete_campaign_has_creator_by_creator_id_and_brand_id($creator_id,$brand_id) {
-        $this->db->where('creator_id', $creator_id);
-        $this->db->where('brand_id', $brand_id);
+    function delete_campaign_has_creator_by_campaign_id($campaign_id) {
+        $this->db->where('campaign_id', $campaign_id);
         $this->db->delete('campaign_creator_has_creator');
     }
 
@@ -58,30 +57,68 @@ class M_creator_campaign extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('campaign_creator', $data);
     }
-    function get_all_campaign($brand_id="all",$status="all") {
+    function update_campaign_has_creator($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('campaign_creator_has_creator', $data);
+    }
+    function get_all_campaign($creator_id="all",$status="all",$privacy="all",$get_creator=true) {
         $g_list = array();
         $this->db->order_by("name", "asc");
-        if ($brand_id!="all") {
-            $this->db->where('brand_id', $brand_id);
+        if ($creator_id!="all") {
+            $this->db->where('create_by', $creator_id);
         }
         if ($status!="all") {
             $this->db->where('status', $status);
+        }
+        if ($privacy!="all") {
+            $this->db->where('privacy', $privacy);
         }
         $query = $this->db->get('campaign_creator');
         
         if ($query->num_rows() > 0) {
             $g_list = $query->result();
+            if ($get_creator) {
+                foreach ($g_list as $key => $value) {
+                    $g_list[$key]->create_by=$this->m_influencer->get_influencer_by_id($value->create_by);
+                }
+            }
         }
         return $g_list;
     }
-    function get_campaign_has_creator_by_campaign_id($id,$invite_type="all",$brand_id="all") { 
+    function get_all_invite_campaign($creator_id="all",$status="all",$get_creator=true,$no_reject=true) {
+        $g_list = array();
+        $this->db->order_by("name", "asc");
+        if ($creator_id!="all") {
+            $this->db->where('campaign_creator_has_creator.creator_id', $creator_id);
+        }
+        if ($status!="all") {
+            $this->db->where('campaign_creator.status', $status);
+        }
+        if ($no_reject) {
+                $this->db->where('campaign_creator_has_creator.response !=', "reject");
+        }
+        $this->db->select('campaign_creator.*,campaign_creator_has_creator.response');
+        $this->db->join('campaign_creator_has_creator', 'campaign_creator_has_creator.campaign_id = campaign_creator.id', 'right');
+        $query = $this->db->get('campaign_creator');
+        
+        if ($query->num_rows() > 0) {
+            $g_list = $query->result();
+            if ($get_creator) {
+                foreach ($g_list as $key => $value) {
+                    $g_list[$key]->create_by=$this->m_influencer->get_influencer_by_id($value->create_by);
+                }
+            }
+        }
+        return $g_list;
+    }
+    function get_campaign_has_creator_by_campaign_id($id,$invite_type="all",$create_by="all") { 
         $g_list = array();
         $this->db->where('campaign_id', $id);
         if ($invite_type!="all") {
             $this->db->where('invite_type', $invite_type);
         }  
-        if ($brand_id!="all") {
-            $this->db->where('brand_id', $brand_id);
+        if ($create_by!="all") {
+            $this->db->where('create_by', $create_by);
         }        
         $query = $this->db->get('campaign_creator_has_creator');
         
@@ -96,21 +133,6 @@ class M_creator_campaign extends CI_Model
             }
         }
         return $g_list;
-    }
-    function get_campaign_has_creator_by_creator_id_and_brand_id($creator_id,$brand_id) { 
-        $g_list = array();
-        $g_list2 = array();
-        $this->db->where('creator_id', $creator_id);
-        $this->db->where('brand_id', $brand_id);
-        $query = $this->db->get('campaign_creator_has_creator');
-        
-        if ($query->num_rows() > 0) {
-            $g_list = $query->result();
-            foreach ($g_list as $key => $value) {
-                $g_list2[$value->campaign_id]=$value;
-            }
-        }
-        return $g_list2;
     }
     function get_campaign_has_creator_by_creator_id_and_campaign_id($creator_id,$campaign_id) { 
         $g_list = array();

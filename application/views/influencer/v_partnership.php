@@ -157,21 +157,15 @@ $ci =&get_instance();
                                         <div class="small-4 masonry-item columns anim zoomIn" style="visibility:hidden;">
                                             <div class="row align-center">
                                                 <div class="small-12 columns">
-                                                    <h3>1 Day 03 Hour</h3>
+                                                    <label>ชื่อผู้ส่ง <?=$value->create_by->name?></label>&nbsp;
+                                                    <label>ส่งเมื่อ <?=$ci->m_time->unix_to_datepicker($value->start_date)?></label>
                                                 </div>
                                                 <div class="small-12 columns">
-                                                    <img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>">
+                                                    <img src="<?=upload_site_url('media/campaign_creator/profile/' . $value->picture);?>">
                                                 </div>
                                                 <div class="small-12 columns">
                                                     <label>
-                                                        <?=$value->name?>
-                                                            <br/> ประเภท :
-                                                            <?
-                                                      foreach ($value->social as $key2 => $value2) {
-                                                        echo $value2->social.",";
-                                                      }
-                                                      ?>
-                                                                <br/>
+                                                        <?=$value->name?>                                                                <br/>
                                                                 <?=$value->budget_start?>-
                                                                     <?=$value->budget_end?>
                                                                         <br/>
@@ -181,14 +175,17 @@ $ci =&get_instance();
                                                 </div>
                                             </div>
                                             <div class="row align-center">
-                                                <div class="small-3 columns">
-                                                    <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
+                                                <div class="small-6 columns">
+                                                    <?
+                                                    $but_text="ร่วมงาน";
+                                                    if ($value->response=="accept") {
+                                                        $but_text="เข้าร่วมแล้ว";
+                                                    }
+                                                    ?>
+                                                    <a class="button primary" data-open="propos-modal" id="acpbut-<?=$value->id?>" href="javascript:send_campaign_response('<?=$value->id?>','accept','acpbut-<?=$value->id?>');"><?=$but_text?></a>
                                                 </div>
                                                 <div class="small-6 columns">
-                                                    <a href="javascript:open_campaign_detail('<?=$value->id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
-                                                </div>
-                                                <div class="small-12 columns">
-                                                    <a class="button primary" data-open="propos-modal" href="javascript:propos_form('<?=$value->id?>','<?=$value->brand_id?>');">SEND PROPOSAL</a>
+                                                    <a class="button primary" data-open="propos-modal" href="javascript:send_campaign_response('<?=$value->id?>','reject');">ปฏิเสธ</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -229,26 +226,20 @@ $ci =&get_instance();
                             <div class="row">
                                 <div class="small-12 masonry">
                                     <?
-                                          foreach ($campaign_list as $key => $value) {
+                                          foreach ($my_campaign as $key => $value) {
                                             ?>
                                         <div class="small-4 masonry-item columns anim zoomIn" style="visibility:hidden;">
                                             <div class="row align-center">
                                                 <div class="small-12 columns">
-                                                    <h3>1 Day 03 Hour</h3>
+                                                    <label>ชื่อผู้ส่ง <?=$value->create_by->name?></label>&nbsp;
+                                                    <label>ส่งเมื่อ <?=$ci->m_time->unix_to_datepicker($value->start_date)?></label>
                                                 </div>
                                                 <div class="small-12 columns">
-                                                    <img src="<?=upload_site_url('media/campaign/profile/' . $value->picture);?>">
+                                                    <img src="<?=upload_site_url('media/campaign_creator/profile/' . $value->picture);?>">
                                                 </div>
                                                 <div class="small-12 columns">
                                                     <label>
-                                                        <?=$value->name?>
-                                                            <br/> ประเภท :
-                                                            <?
-                                                      foreach ($value->social as $key2 => $value2) {
-                                                        echo $value2->social.",";
-                                                      }
-                                                      ?>
-                                                                <br/>
+                                                        <?=$value->name?>                                                                <br/>
                                                                 <?=$value->budget_start?>-
                                                                     <?=$value->budget_end?>
                                                                         <br/>
@@ -258,14 +249,11 @@ $ci =&get_instance();
                                                 </div>
                                             </div>
                                             <div class="row align-center">
-                                                <div class="small-3 columns">
-                                                    <a href="javascript:;"><img src="<?=site_url()?>/images/heart.png"></a>
+                                                <div class="small-6 columns">
+                                                    <a class="button primary" data-open="propos-modal" href="<?=site_url("influencer/campaign_edit/".$value->id)?>">แก้ใข</a>
                                                 </div>
                                                 <div class="small-6 columns">
-                                                    <a href="javascript:open_campaign_detail('<?=$value->id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
-                                                </div>
-                                                <div class="small-12 columns">
-                                                    <a class="button primary" data-open="propos-modal" href="javascript:propos_form('<?=$value->id?>','<?=$value->brand_id?>');">SEND PROPOSAL</a>
+                                                    <a class="button primary" data-open="propos-modal" href="<?=site_url("influencer/campaign_delete/".$value->id)?>">ลบ</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -299,6 +287,11 @@ function form_show(div_class) {
     });
 
 }
+$( document ).on( "click", ".delete_creator", function() {
+      $( this ).parent().fadeOut("fast",function() {
+        $( this ).remove();
+        });
+    });
 $(function() {
 
     'use strict';
@@ -365,14 +358,16 @@ $(function() {
                     $("#partner_invite").append(data);
             });
     }
-    function send_propos(camp_id,brand_id) {
+    function send_campaign_response(camp_id,resp,ele_id) {
         $.ajax({
                 method: "post",
-                url: "<?php echo site_url("ajax/campaign/send_camp_propos"); ?>",
-                data: "camp_id=" + camp_id+"&creator_id=<?=$profile->id?>&brand_id="+brand_id+"&creator_type=influencer"
+                url: "<?php echo site_url("influencer/send_camp_resp"); ?>",
+                data: "camp_id=" + camp_id+"&creator_id=<?=$profile->id?>&resp="+resp
             })
             .done(function(data) {
-                    $("#propos-modal .camp-region").html(data["data"]);
+                    $("#invite-modal .camp-region").html(data["data"]);
+                    $("#"+ele_id).html("เข้าร่วมแล้ว")
+                    $("#invite-modal").foundation('open');
             });
 
     }
