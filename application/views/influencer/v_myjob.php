@@ -1,5 +1,19 @@
 <?
 $ci =&get_instance();
+$file_arr = array(
+        '1' => "1.mp4", 
+        '2' => "2.mp4", 
+        '3' => "3.mp4", 
+        '4' => "4.mp4", 
+        '5' => "5.mp4", 
+        '6' => "6.mp4", 
+        '7' => "7.mp4", 
+        '8' => "8.mp4", 
+        '9' => "9.mp4", 
+        '10' => "10.mp4", 
+        '11' => "11.mp4", 
+        '12' => "12.mp4", 
+        );
 ?>
 <style type="text/css">
 .c-holder {
@@ -13,6 +27,9 @@ $ci =&get_instance();
 .partner-items{
     position: relative;
     height: 50px;
+}
+.masonry-item{
+    margin-top: 50px;
 }
 </style>
 <div class="row creator-list">
@@ -34,75 +51,106 @@ $ci =&get_instance();
                     <div class="row">
                         <div class="small-12 columns c-holder c-progress" >
                             <div class="row">
-                                <h5>Create Campaign</h5>
-                                <form method="post" action="<?=site_url('influencer/campaign_create')?>">
-                                    <h5 style="color:red"><?if($this->session->userdata('create_error')){echo $this->session->userdata('create_error');$this->session->unset_userdata('create_error');}?></h5>
-                                    <div class="row">
-                                        <div class="large-9 columns">
+                                    <div class="small-12 columns">
+                                        งานทั้งหมด <span class="label alert"><?=count($my_campaign)?></span> งาน
+                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-6 columns">
+                                    รายชื่องาน
+                                </div>
+                                <div class="small-6 columns">
+                                    สถานะ
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-12 columns">
+                                    <div class="callout">
+                                        <?
+                                        foreach ($my_campaign as $key => $value) {
+                                            ?>
                                             <div class="row">
-                                                <div class="medium-12 columns">
-                                                    <label>ชื่องาน
-                                                        <input name="name" type="text" placeholder="name">
-                                                    </label>
+                                                <div class="small-6 columns">
+                                                    <?=$value->name?>
                                                 </div>
-                                                <fieldset class="large-6 columns">
-                                                    <legend>ความเป็นส่วนตัว</legend>
-                                                    <input type="radio" name="privacy" value="private" id="pokemonRed" required>
-                                                    <label for="pokemonRed">ส่วนตัว</label>
-                                                    <input type="radio" name="privacy" value="public" id="pokemonBlue" checked>
-                                                    <label for="pokemonBlue">สาธารณะ</label>
-                                                </fieldset>
-                                                <div class="medium-12 columns">
-                                                    <label>ช่วงบัดเจต
-                                                        <input name="budget_start" type="text" placeholder="budget-start">-
-                                                        <input name="budget_end" type="text" placeholder="budget-end">
-                                                    </label>
+                                                <div class="small-6 columns">
+                                                    <?=$value->status?>
                                                 </div>
-                                                <div class="medium-12 columns">
-                                                    <label>แนะนำตัวเอง
-                                                        <textarea name="description" placeholder="None"></textarea>
-                                                    </label>
-                                                </div>
-                                                <div class="medium-12 columns">
-                                                    <label>วันที่เริ่ม
-                                                        <input type="text" name="start_date" class="datepicker">
-                                                    </label>
-                                                </div>
-                                                <div class="medium-12 columns">
-                                                    <label>วันที่สิ้นสุด
-                                                        <input type="text" name="end_date" class="datepicker">
-                                                    </label>
-                                                </div>
-                                                <div class="medium-12 columns">
-                                                    <a class="button success" data-open="invite-modal" href="javascript:show_partner();">เชิญ creator</a>
-                                                    <div class="row" id="partner_invite">
-                                                        
+                                            </div>
+                                            <?
+                                        }
+                                        ?>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-6 columns">
+                                    กำลังดำเนินการ จำนวน <?=count($my_campaign)?> งาน
+                                    <?
+                                        foreach ($my_campaign as $key => $value) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="small-12 columns">
+                                                    <div class="callout">
+                                                    <?=$value->name?>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- The fileinput-button span is used to style the file input field as button -->
-                                            <span class="button success fileinput-button">
-                                                <span>Select files...</span>
-                                            <!-- The file input field used as target for the file upload widget -->
-                                            <input id="fileupload" type="file" name="files[]" multiple>
-                                            </span>
-                                            <br>
-                                            <br>
-                                            <!-- The global progress bar -->
-                                            <div id="progress" class="success progress">
-                                                <div class="progress-meter"></div>
+                                            <?
+                                        }
+                                        ?>
+                                </div>
+                                <div class="small-6 columns">
+                                    กำลังแก้ใข จำนวน <?=count($my_campaign)?> งาน
+                                    <?
+                                        foreach ($my_campaign as $key => $value) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="small-12 columns">
+                                                    <div class="callout">
+                                                    <?=$value->name?>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <!-- The container for the uploaded files -->
-                                            <div class="files">
-                                                <img id="img_tmp" src="" alt="">
-                                                <input id="files" type="hidden" name="filename" value="">
+                                            <?
+                                        }
+                                        ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="small-6 columns">
+                                    งานที่เสร็จ จำนวน <?=count($my_campaign)?> งาน
+                                    <?
+                                        foreach ($my_campaign as $key => $value) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="small-12 columns">
+                                                    <div class="callout">
+                                                    <?=$value->name?>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="medium-5 columns">
-                                                <input type='submit' class="button" value="Create">
+                                            <?
+                                        }
+                                        ?>
+                                </div>
+                                <div class="small-6 columns">
+                                    รออนุมัติ จำนวน <?=count($my_campaign)?> งาน
+                                    <?
+                                        foreach ($my_campaign as $key => $value) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="small-12 columns">
+                                                    <div class="callout">
+                                                    <?=$value->name?>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </form>
+                                            <?
+                                        }
+                                        ?>
+                                </div>
                             </div>
                         </div>
                         <div class="small-12 columns c-holder c-content">
@@ -149,47 +197,74 @@ $ci =&get_instance();
                             </div>
                             <div class="row">
                                 <div class="small-12 masonry">
-                                    <?
-                                          foreach ($campaign_list as $key => $value) {
-                                            ?>
-                                        <div class="small-4 masonry-item columns anim zoomIn" style="visibility:hidden;">
+                                        <div class="small-6 masonry-item columns anim zoomIn" style="visibility:hidden;">
                                             <div class="row align-center">
                                                 <div class="small-12 columns">
-                                                    <label>ชื่อผู้ส่ง <?=$value->create_by->name?></label>&nbsp;
-                                                    <label>ส่งเมื่อ <?=$ci->m_time->unix_to_datepicker($value->start_date)?></label>
+                                                    <video width="100%"  controls>
+                                                      <source src="<?='http://atom-anime.ddns.net/files/Rokka no Yuusha/'.$file_arr[1]?>" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                    </video>
                                                 </div>
                                                 <div class="small-12 columns">
-                                                    <img src="<?=upload_site_url('media/campaign_creator/profile/' . $value->picture);?>">
-                                                </div>
-                                                <div class="small-12 columns">
+                                                    
                                                     <label>
-                                                        <?=$value->name?>                                                                <br/>
-                                                                <?=$value->budget_start?>-
-                                                                    <?=$value->budget_end?>
-                                                                        <br/>
-                                                                        <?=$ci->m_time->unix_to_datepicker($value->start_date)?>-
-                                                                            <?=$ci->m_time->unix_to_datepicker($value->end_date)?>
+                                                        Rokka no Yuusha 1
                                                     </label>
-                                                </div>
-                                            </div>
-                                            <div class="row align-center">
-                                                <div class="small-6 columns">
-                                                    <?
-                                                    $but_text="ร่วมงาน";
-                                                    if ($value->response=="accept") {
-                                                        $but_text="เข้าร่วมแล้ว";
-                                                    }
-                                                    ?>
-                                                    <a class="button primary" data-open="propos-modal" id="acpbut-<?=$value->id?>" href="javascript:send_campaign_response('<?=$value->id?>','accept','acpbut-<?=$value->id?>');"><?=$but_text?></a>
-                                                </div>
-                                                <div class="small-6 columns">
-                                                    <a class="button primary" data-open="propos-modal" href="javascript:send_campaign_response('<?=$value->id?>','reject');">ปฏิเสธ</a>
+                                                    <p>just description just description just descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust description</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <?
-                                          }
-                                          ?>
+                                        <div class="small-6 masonry-item columns anim zoomIn" style="visibility:hidden;">
+                                            <div class="row align-center">
+                                                <div class="small-12 columns">
+                                                    <video width="100%"  controls>
+                                                      <source src="<?='http://atom-anime.ddns.net/files/Rokka no Yuusha/'.$file_arr[2]?>" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                    </video>
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    
+                                                    <label>
+                                                        Rokka no Yuusha 1
+                                                    </label>
+                                                    <p>just description just description just descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust description</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="small-6 masonry-item columns anim zoomIn" style="visibility:hidden;">
+                                            <div class="row align-center">
+                                                <div class="small-12 columns">
+                                                    <video width="100%"  controls>
+                                                      <source src="<?='http://atom-anime.ddns.net/files/Rokka no Yuusha/'.$file_arr[3]?>" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                    </video>
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    
+                                                    <label>
+                                                        Rokka no Yuusha 1
+                                                    </label>
+                                                    <p>just description just description just descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust description</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="small-6 masonry-item columns anim zoomIn" style="visibility:hidden;">
+                                            <div class="row align-center">
+                                                <div class="small-12 columns">
+                                                    <video width="100%"  controls>
+                                                      <source src="<?='http://atom-anime.ddns.net/files/Rokka no Yuusha/'.$file_arr[4]?>" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                    </video>
+                                                </div>
+                                                <div class="small-12 columns">
+                                                    
+                                                    <label>
+                                                        Rokka no Yuusha 1
+                                                    </label>
+                                                    <p>just description just description just descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust descriptionjust description</p>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
                         </div>
