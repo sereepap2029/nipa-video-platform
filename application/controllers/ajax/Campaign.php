@@ -93,6 +93,11 @@ class Campaign extends CI_Controller {
         		'status' => "accept", 
         	);
         $this->m_campaign->update_campaign_has_creator($data_2,$_POST['id']);
+        $data_camp = array(
+        		'status' => "WIP",
+        	);
+        $this->m_campaign->update_campaign($data_camp,$propos->campaign_id);
+        $json['data']="รับข้อเสนอ เรียบร้อยแล้ว";
         echo json_encode($json);
         
 		

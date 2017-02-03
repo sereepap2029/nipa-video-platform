@@ -107,7 +107,7 @@ $ci =&get_instance();
                     <a class="button primary" href="javascript:open_propos_detail('<?=$value->propos_id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
                     </div>
                     <div class="small-6 columns">
-                    <a class="button primary" href="javascript:accept_propos('<?=$value->propos_id?>');" data-open="detail-modal" data-animation-in="zoomIn">รับข้อเสนอ</a>
+                    <a class="button primary" href="javascript:accept_propos('<?=$value->propos_id?>');">รับข้อเสนอ</a>
                     </div>
                 </div>
                 <?
@@ -157,7 +157,7 @@ $ci =&get_instance();
     function accept_propos(propos_id) {
         if (confirm("ถ้าหากรับข้อเสนอแล้วจะไม่สามารถแก้ใขได้อีก")) {
             $.ajax({
-                method: "get",
+                method: "post",
                 url: "<?php echo site_url("ajax/campaign/accept_propos"); ?>",
                 data: "id=" + propos_id
             })
