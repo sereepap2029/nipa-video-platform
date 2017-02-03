@@ -103,7 +103,12 @@ $ci =&get_instance();
                     </div>
                 </div>
                 <div class="row">
-                    <a href="javascript:open_propos_detail('<?=$value->propos_id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
+                <div class="small-6 columns">
+                    <a class="button primary" href="javascript:open_propos_detail('<?=$value->propos_id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
+                    </div>
+                    <div class="small-6 columns">
+                    <a class="button primary" href="javascript:accept_propos('<?=$value->propos_id?>');" data-open="detail-modal" data-animation-in="zoomIn">รับข้อเสนอ</a>
+                    </div>
                 </div>
                 <?
               }
@@ -147,6 +152,19 @@ $ci =&get_instance();
             .done(function(data) {
                     $("#detail-modal .camp-region").html(data);
             });
+
+    }
+    function accept_propos(propos_id) {
+        if (confirm("ถ้าหากรับข้อเสนอแล้วจะไม่สามารถแก้ใขได้อีก")) {
+            $.ajax({
+                method: "get",
+                url: "<?php echo site_url("ajax/campaign/accept_propos"); ?>",
+                data: "id=" + propos_id
+            })
+            .done(function(data) {
+                    $("#detail-modal .camp-region").html(data["data"]);
+            });
+        }
 
     }
 </script>

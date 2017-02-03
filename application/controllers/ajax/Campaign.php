@@ -79,5 +79,23 @@ class Campaign extends CI_Controller {
         echo json_encode($json);
 		
 	}
+	public function accept_propos()
+	{
+		header('Content-Type: application/json');
+        $json = array();
+        $json['flag']="OK";
+        $propos=$this->m_campaign->get_campaign_has_creator_by_id($_POST['id']);
+        $data_so = array(
+        		'status' => "reject", 
+        	);
+        $this->m_campaign->update_all_campaign_has_creator_by_campaign_id($data_so,$propos->campaign_id);
+        $data_2 = array(
+        		'status' => "accept", 
+        	);
+        $this->m_campaign->update_campaign_has_creator($data_2,$_POST['id']);
+        echo json_encode($json);
+        
+		
+	}
 
 }

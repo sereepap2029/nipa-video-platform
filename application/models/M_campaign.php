@@ -95,6 +95,14 @@ class M_campaign extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('campaign', $data);
     }
+    function update_campaign_has_creator($data, $id) {
+        $this->db->where('id', $id);
+        $this->db->update('campaign_has_creator', $data);
+    }
+    function update_all_campaign_has_creator_by_campaign_id($data, $id) {
+        $this->db->where('campaign_id', $id);
+        $this->db->update('campaign_has_creator', $data);
+    }
     function get_all_campaign($brand_id="all",$status="all") {
         $g_list = array();
         $this->db->order_by("name", "asc");

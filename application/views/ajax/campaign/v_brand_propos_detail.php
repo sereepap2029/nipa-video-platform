@@ -41,7 +41,7 @@ $ci =&get_instance();
         </div>
         <div class="small-12 columns">
             <div class="small-6 columns">
-                <a class="button primary" href="javascript:;">รับข้อเสนอ</a>
+                <a class="button primary" href="javascript:accept_propos('<?=$propos->id?>');">รับข้อเสนอ</a>
             </div>
         </div>
     </div>
