@@ -122,6 +122,57 @@ class M_campaign extends CI_Model
         }
         return $g_list;
     }
+    function get_wip_campaign_for_creator($creator_id) {
+        $g_list = array();
+        $this->db->order_by("name", "asc");
+        $this->db->where('campaign_has_creator.creator_id', $creator_id);
+        $this->db->where('campaign.status', "WIP");
+        $this->db->select('campaign.*');
+        $this->db->join('campaign_has_creator', 'campaign_has_creator.campaign_id = campaign.id', 'right');
+        $query = $this->db->get('campaign');
+        
+        if ($query->num_rows() > 0) {
+            $g_list = $query->result();
+            foreach ($g_list as $key => $value) {
+                $g_list[$key]->social=$this->get_campaign_has_social_by_campaign_id($value->id);
+            }
+        }
+        return $g_list;
+    }
+    function get_reject_campaign_for_creator($creator_id) {
+        $g_list = array();
+        $this->db->order_by("name", "asc");
+        $this->db->where('campaign_has_creator.creator_id', $creator_id);
+        $this->db->where('campaign.status', "reject");
+        $this->db->select('campaign.*');
+        $this->db->join('campaign_has_creator', 'campaign_has_creator.campaign_id = campaign.id', 'right');
+        $query = $this->db->get('campaign');
+        
+        if ($query->num_rows() > 0) {
+            $g_list = $query->result();
+            foreach ($g_list as $key => $value) {
+                $g_list[$key]->social=$this->get_campaign_has_social_by_campaign_id($value->id);
+            }
+        }
+        return $g_list;
+    }
+    function get_complete_campaign_for_creator($creator_id) {
+        $g_list = array();
+        $this->db->order_by("name", "asc");
+        $this->db->where('campaign_has_creator.creator_id', $creator_id);
+        $this->db->where('campaign.status', "complete");
+        $this->db->select('campaign.*');
+        $this->db->join('campaign_has_creator', 'campaign_has_creator.campaign_id = campaign.id', 'right');
+        $query = $this->db->get('campaign');
+        
+        if ($query->num_rows() > 0) {
+            $g_list = $query->result();
+            foreach ($g_list as $key => $value) {
+                $g_list[$key]->social=$this->get_campaign_has_social_by_campaign_id($value->id);
+            }
+        }
+        return $g_list;
+    }
     function get_campaign_has_social_by_campaign_id($id) { 
         $g_list = array();
         $this->db->where('campaign_id', $id);

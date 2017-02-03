@@ -54,6 +54,7 @@ class Campaign extends CI_Controller {
 					'name' => $_POST['name'], 
 					'description' => $_POST['description'],
 					'url' => $_POST['url'],
+					'status' => $_POST['status'],
 					'start_date' => $this->m_time->datepicker_to_unix($_POST['start_date']),
 					'end_date' => $this->m_time->datepicker_to_unix($_POST['end_date']),
 					);

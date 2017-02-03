@@ -86,14 +86,14 @@ $file_arr = array(
                             </div>
                             <div class="row">
                                 <div class="small-6 columns">
-                                    กำลังดำเนินการ จำนวน <?=count($my_campaign)?> งาน
+                                    กำลังดำเนินการ จำนวน <?=count($my_wip_campaign)?> งาน
                                     <?
-                                        foreach ($my_campaign as $key => $value) {
+                                        foreach ($my_wip_campaign as $key => $value) {
                                             ?>
                                             <div class="row">
                                                 <div class="small-12 columns">
                                                     <div class="callout">
-                                                    <?=$value->name?>
+                                                    <a href="<?=site_url("influencer/job_detail/".$value->id)?>"><?=$value->name?></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -102,14 +102,14 @@ $file_arr = array(
                                         ?>
                                 </div>
                                 <div class="small-6 columns">
-                                    กำลังแก้ใข จำนวน <?=count($my_campaign)?> งาน
+                                    กำลังแก้ใข จำนวน <?=count($my_reject_campaign)?> งาน
                                     <?
-                                        foreach ($my_campaign as $key => $value) {
+                                        foreach ($my_reject_campaign as $key => $value) {
                                             ?>
                                             <div class="row">
                                                 <div class="small-12 columns">
                                                     <div class="callout">
-                                                    <?=$value->name?>
+                                                    <a href="<?=site_url("influencer/job_detail/".$value->id)?>"><?=$value->name?></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,14 +120,14 @@ $file_arr = array(
                             </div>
                             <div class="row">
                                 <div class="small-6 columns">
-                                    งานที่เสร็จ จำนวน <?=count($my_campaign)?> งาน
+                                    งานที่เสร็จ จำนวน <?=count($my_complete_campaign)?> งาน
                                     <?
-                                        foreach ($my_campaign as $key => $value) {
+                                        foreach ($my_complete_campaign as $key => $value) {
                                             ?>
                                             <div class="row">
                                                 <div class="small-12 columns">
                                                     <div class="callout">
-                                                    <?=$value->name?>
+                                                    <a href="<?=site_url("influencer/job_detail/".$value->id)?>"><?=$value->name?></a>
                                                     </div>
                                                 </div>
                                             </div>

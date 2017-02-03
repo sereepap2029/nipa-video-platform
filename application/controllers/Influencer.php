@@ -235,12 +235,26 @@ class Influencer extends CI_Controller {
         $this->require_auth();
         $data['profile']=$this->m_influencer->get_influencer_by_id($this->m_session_cache->get('influencer_id'));
         $data['my_campaign']=$this->m_creator_campaign->get_all_campaign($this->m_session_cache->get('influencer_id'));
+        $data['my_wip_campaign']=$this->m_campaign->get_wip_campaign_for_creator($this->m_session_cache->get('influencer_id'));
+        $data['my_reject_campaign']=$this->m_campaign->get_reject_campaign_for_creator($this->m_session_cache->get('influencer_id'));
+        $data['my_complete_campaign']=$this->m_campaign->get_complete_campaign_for_creator($this->m_session_cache->get('influencer_id'));
         $data['campaign_list']=$this->m_creator_campaign->get_all_invite_campaign($this->m_session_cache->get('influencer_id'),"active");
         
         $this->load->view('influencer/v_meta');
         $this->load->view('influencer/v_header');
         $this->load->view('influencer/v_header_button');
         $this->load->view('influencer/v_myjob',$data);
+        $this->load->view('influencer/v_footer');
+    }
+    public function job_detail()
+    {
+        $this->require_auth();
+        $campaign_id=$this->uri->segment(3,'');
+        $data['campaign']=$this->m_campaign->get_campaign_by_id($campaign_id);
+        $this->load->view('influencer/v_meta');
+        $this->load->view('influencer/v_header');
+        $this->load->view('influencer/v_header_button');
+        $this->load->view('influencer/v_campaign_detail_wip',$data);
         $this->load->view('influencer/v_footer');
     }
     public function reward()
