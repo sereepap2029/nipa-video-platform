@@ -12,18 +12,18 @@ $ci =&get_instance();
         <div class="row step-form step-form-1" style="display: block;">
             <div class="medium-12 columns">
                 <label>ชื่อ นามสกุล
-                    <input name="username" type="text" placeholder="Username">
+                    <input id="propos_name"  type="text" placeholder="Username">
                 </label>
             </div>
             <div class="medium-12 columns">
                 <label>เลขที่บัตรประชาชน
-                    <input name="password" type="text" placeholder="password">
+                    <input id="propos_civil_id" type="text" placeholder="password">
                 </label>
             </div>
             <div class="medium-12 columns">
                 <label>
                     ที่อยู่ตามบัตร
-                    <textarea placeholder="None"></textarea>
+                    <textarea id="propos_address" placeholder="None"></textarea>
                 </label>
             </div>
             <div class="large-12 columns">
@@ -77,13 +77,13 @@ $ci =&get_instance();
         <div class="row step-form step-form-2">
             <div class="medium-12 columns">
                 <label>ชื่อเล่น
-                    <input name="password" type="text" placeholder="password">
+                    <input id="propos_nickname" type="text" placeholder="password">
                 </label>
             </div>
             <div class="medium-12 columns">
                 <label>
                     เกี่ยวกับคุณ
-                    <textarea placeholder="None"></textarea>
+                    <textarea id="propos_about" placeholder="None"></textarea>
                 </label>
             </div>
             <div class="row">
@@ -98,13 +98,13 @@ $ci =&get_instance();
         <div class="row step-form step-form-3">
             <div class="medium-12 columns">
                 <label>เสนอราคาจ้างงาน
-                    <input name="password" type="text" placeholder="password">
+                    <input id="propos_cost" type="text" placeholder="password">
                 </label>
             </div>
             <div class="medium-12 columns">
                 <label>
                     ระบุสัญญาจ้างงาน
-                    <textarea placeholder="None"></textarea>
+                    <textarea id="propos_term" placeholder="None"></textarea>
                 </label>
             </div>
             <div class="row">

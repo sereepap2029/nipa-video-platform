@@ -69,6 +69,14 @@ class M_campaign extends CI_Model
         $this->db->where('brand_id', $brand_id);
         $this->db->delete('campaign_has_creator');
     }
+    function delete_campaign_has_creator_by_creator_id_and_camp_id($creator_id,$camp_id) {
+        $camp=$this->get_campaign_has_creator_by_creator_id_and_campaign_id($creator_id,$camp_id);
+        @unlink("./media/campaign/proposal/" . $camp->img_id_card);
+        @unlink("./media/campaign/proposal/" . $camp->img_port);
+        $this->db->where('creator_id', $creator_id);
+        $this->db->where('campaign_id', $camp_id);
+        $this->db->delete('campaign_has_creator');
+    }
 
     function add_campaign($data) {
         $this->db->insert('campaign', $data);

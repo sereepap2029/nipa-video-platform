@@ -270,10 +270,24 @@ $ci =&get_instance();
             });
     }
     function send_propos(camp_id,brand_id) {
+
         $.ajax({
                 method: "post",
                 url: "<?php echo site_url("ajax/campaign/send_camp_propos"); ?>",
-                data: "camp_id=" + camp_id+"&creator_id=<?=$profile->id?>&brand_id="+brand_id+"&creator_type=influencer"
+                data: {
+                    'camp_id':camp_id,
+                    'creator_id':'<?=$profile->id?>',
+                    'brand_id':brand_id,
+                    'creator_type':'influencer',
+                    'propos_name':$("#propos_name").val(),
+                    'propos_civil_id':$("#propos_civil_id").val(),
+                    'propos_address':$("#propos_address").val(),
+                    'img_id_card':$("#img_id_card").val(),
+                    'img_port':$("#img_port").val(),
+                    'propos_nickname':$("#propos_nickname").val(),
+                    'propos_cost':$("#propos_cost").val(),
+                    'propos_term':$("#propos_term").val(),
+                }
             })
             .done(function(data) {
                     $("#propos-modal .camp-region").html(data["data"]);
