@@ -225,6 +225,10 @@ class M_campaign extends CI_Model
         if ($query->num_rows() > 0) {
             $business = $query->result();
             $business = $business[0];
+            $social=$this->get_campaign_has_social_by_campaign_id($business->id);
+            foreach ($social as $key => $value) {
+                $business->social[$value->social]=$value->social;
+            }
         }
         return $business;
     }

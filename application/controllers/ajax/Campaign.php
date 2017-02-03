@@ -53,6 +53,10 @@ class Campaign extends CI_Controller {
                 $json['data']= "false send post";
                 //var_dump($result);
             }else{
+            	$return_data=json_decode($result1);
+				$card_filename=$return_data->new_filename;
+				$return_data=json_decode($result2);
+				$port_filename=$return_data->new_filename;
 			    $data_so = array(
 					'id' => $this->m_campaign->generate_campaign_has_creator_id(),
 					'creator_id' => $_POST['creator_id'], 
@@ -66,8 +70,8 @@ class Campaign extends CI_Controller {
 					'propos_nickname' => $_POST['propos_nickname'],
 					'propos_cost' => $_POST['propos_cost'],
 					'propos_term' => $_POST['propos_term'],
-					'propos_cost' => $card_filename,
-					'propos_term' => $port_filename,
+					'img_id_card' => $card_filename,
+					'img_port' => $port_filename,
 					);
 				$this->m_campaign->add_campaign_has_creator($data_so);
 				$json['data']="Proposal sent!!";

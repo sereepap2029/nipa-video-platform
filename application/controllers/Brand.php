@@ -76,7 +76,11 @@ class Brand extends CI_Controller {
 		$data['creators_submit']=$this->m_campaign->get_campaign_has_creator_by_campaign_id($campaign_id,"submit");
 		$this->load->view('brand/v_meta');
 		$this->load->view('brand/v_header');
-		$this->load->view('brand/v_campaign_detail',$data);
+		if ($data['campaign']->status=="WIP") {
+			$this->load->view('brand/v_campaign_detail_wip',$data);
+		}else{
+			$this->load->view('brand/v_campaign_detail',$data);
+		}		
 		$this->load->view('brand/v_footer');
 	}
 	public function campaign_create()

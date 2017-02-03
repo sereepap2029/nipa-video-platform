@@ -9,13 +9,13 @@ $ci =&get_instance();
             <div class="row">
                 <ul class="align-center menu">
                   <li>
-                    <a class="hollow button" href="#">ทั้งหมด</a>
+                    <a class="hollow button" href="javascript:c_show('list-holder');">ทั้งหมด</a>
                   </li>
                   <li>
-                    <a class="hollow button" href="#">ดำเนินการ</a>
+                    <a class="hollow button" href="javascript:c_show('WIP');">ดำเนินการ</a>
                   </li>
                   <li>
-                    <a class="hollow button" href="#">เสร็จ</a>
+                    <a class="hollow button" href="javascript:c_show('complete');">เสร็จ</a>
                   </li>
                 </ul>
             </div>
@@ -23,7 +23,7 @@ $ci =&get_instance();
               <?
               foreach ($campaign_list as $key => $value) {
                 ?>
-                <div class="row align-center">
+                <div class="row align-center list-holder <?=$value->status?>">
                     <div class="small-2 columns">
                       <a href="<?=site_url("brand/campaign_detail/".$value->id)?>"><img src="<?=upload_site_url('media/campaign/profile/'.$value->picture);?>"></a>
                     </div>
@@ -55,3 +55,12 @@ $ci =&get_instance();
         </div>
     </div>
 </div>
+<script type="text/javascript">
+  function c_show(div_class){
+    $(".list-holder").fadeOut("fast",function(){
+      setTimeout(function(){ $("."+div_class).fadeIn(); }, 500);
+      
+    });
+    
+  }
+</script>
