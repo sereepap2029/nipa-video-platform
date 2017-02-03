@@ -22,6 +22,13 @@ class Campaign extends CI_Controller {
 		$this->load->view('ajax/campaign/v_creator_campaign_detail',$data);
 		
 	}
+	public function get_propos_detail()
+	{
+		$id=$_GET['id'];
+		$data['propos']=$this->m_campaign->get_campaign_has_creator_by_id($id);
+		$this->load->view('ajax/campaign/v_brand_propos_detail',$data);
+		
+	}
 	public function send_camp_form(){
 		$campaign_id=$_GET['camp_id'];
 		$data['campaign']=$this->m_campaign->get_campaign_by_id($campaign_id);
@@ -38,8 +45,10 @@ class Campaign extends CI_Controller {
         if (isset($camp->id)) {
         	$json['data']="Already send Proposal";
         }else{
-        	$result1=$this->m_campaign->add_campaign_file($_POST['img_id_card'],$campaign_id,$campaign_id."_".$_POST['creator_id']."_id_card",'proposal');
-        	$result2=$this->m_campaign->add_campaign_file($_POST['img_port'],$campaign_id,$campaign_id."_".$_POST['creator_id']."_port",'proposal');
+        	$card_filename=$campaign_id."_".$_POST['creator_id']."_id_card";
+        	$port_filename=$campaign_id."_".$_POST['creator_id']."_port";
+        	$result1=$this->m_campaign->add_campaign_file($_POST['img_id_card'],$campaign_id,$card_filename,'proposal');
+        	$result2=$this->m_campaign->add_campaign_file($_POST['img_port'],$campaign_id,$port_filename,'proposal');
             if ($result1 === FALSE||$result2 === FALSE) { 
                 $json['data']= "false send post";
                 //var_dump($result);
@@ -49,6 +58,7 @@ class Campaign extends CI_Controller {
 					'creator_id' => $_POST['creator_id'], 
 					'creator_type' => $_POST['creator_type'],
 					'campaign_id' => $_POST['camp_id'],
+					'brand_id' => $_POST['brand_id'],
 					'invite_type' => "submit",
 					'propos_name' => $_POST['propos_name'],
 					'propos_civil_id' => $_POST['propos_civil_id'],
@@ -56,6 +66,8 @@ class Campaign extends CI_Controller {
 					'propos_nickname' => $_POST['propos_nickname'],
 					'propos_cost' => $_POST['propos_cost'],
 					'propos_term' => $_POST['propos_term'],
+					'propos_cost' => $card_filename,
+					'propos_term' => $port_filename,
 					);
 				$this->m_campaign->add_campaign_has_creator($data_so);
 				$json['data']="Proposal sent!!";

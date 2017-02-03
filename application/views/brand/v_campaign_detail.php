@@ -102,6 +102,9 @@ $ci =&get_instance();
                         ?></label>
                     </div>
                 </div>
+                <div class="row">
+                    <a href="javascript:open_propos_detail('<?=$value->propos_id?>');" data-open="detail-modal" data-animation-in="zoomIn">detail</a>
+                </div>
                 <?
               }
               ?>
@@ -117,6 +120,16 @@ $ci =&get_instance();
         </div>
     </div>
 </div>
+<div class="reveal" id="detail-modal" data-reveal data-animation-in="rotateIn animated" >
+        <div class="camp-region">
+        </div>
+        <div class="row align-center">
+            <a class="button primary hollow" id="invite-modal-ok" data-close href="javascript:;">ปิด</a>
+        </div>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 <script type="text/javascript">
   function c_show(div_class){
     $(".c-holder").fadeOut("fast",function(){
@@ -125,4 +138,15 @@ $ci =&get_instance();
     });
     
   }
+  function open_propos_detail(propos_id) {
+        $.ajax({
+                method: "get",
+                url: "<?php echo site_url("ajax/campaign/get_propos_detail"); ?>",
+                data: "id=" + propos_id
+            })
+            .done(function(data) {
+                    $("#detail-modal .camp-region").html(data);
+            });
+
+    }
 </script>

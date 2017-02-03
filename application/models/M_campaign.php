@@ -143,6 +143,7 @@ class M_campaign extends CI_Model
                 }else{
                     $g_list[$key]=$this->m_influencer->get_influencer_by_id($value->creator_id);
                 }
+                $g_list[$key]->propos_id=$value->id;
             }
         }
         return $g_list;
@@ -167,6 +168,18 @@ class M_campaign extends CI_Model
         $g_list2 = new stdClass();
         $this->db->where('creator_id', $creator_id);
         $this->db->where('campaign_id', $campaign_id);
+        $query = $this->db->get('campaign_has_creator');
+        
+        if ($query->num_rows() > 0) {
+            $g_list = $query->result();
+                $g_list2=$g_list[0];
+        }
+        return $g_list2;
+    }
+    function get_campaign_has_creator_by_id($id) { 
+        $g_list = array();
+        $g_list2 = new stdClass();
+        $this->db->where('id', $id);
         $query = $this->db->get('campaign_has_creator');
         
         if ($query->num_rows() > 0) {
