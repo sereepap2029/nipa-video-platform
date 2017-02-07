@@ -24,6 +24,7 @@
         </form>
     </div>
 </div>
+<?/*
 <div class="row align-center">
     <div class="column small-6">
         <h5>Producer login</h5>
@@ -50,6 +51,7 @@
         </form>
     </div>
 </div>
+*/?>
 <div class="row align-center">
     <div class="column small-6">
         <h5>Influencer login</h5>
